@@ -22,9 +22,9 @@ ul li .dropdown-item:hover {
 
 .product-image {
     margin: 20px 0px;
-    height: 800px;
-    width: 600px;
-    object-fit: scale-down;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .footer-icon a {
