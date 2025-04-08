@@ -12,12 +12,22 @@ body {
     width: 100%;
 }
 
+.navbar-nav li {
+    display: inline;
+}
+
+.navbar-nav a:hover {
+    background-color: transparent;
+    color: cadetblue;
+}
+
 ul li .dropdown-item {
     border: 1px solid white;
 }
 
 ul li .dropdown-item:hover {
-    background-color: blue;
+    background-color: transparent;
+    color: blueviolet;
 }
 
 .product-image {
