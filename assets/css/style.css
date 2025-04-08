@@ -22,8 +22,8 @@ ul li .dropdown-item:hover {
 
 .product-image {
     margin: 20px 0px;
-    height: 100%;
-    width: 100%;
+    height: 800px;
+    width: 600px;
     object-fit: scale-down;
 }
 
