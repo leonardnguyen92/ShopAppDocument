@@ -2,17 +2,16 @@ body {
     background: linear-gradient(rgb(14, 17, 36), rgb(36, 26, 73));
 }
 
-.navbar-nav {
+.header {
     margin: 0;
     padding: 0;
-    /* overflow: hidden; */
-    position: fixed;
+    overflow: hidden;
     top: 0;
     position: sticky;
     width: 100%;
 }
 
-.navbar-nav li {
+/* .navbar-nav li {
     display: inline;
 }
 
@@ -28,7 +27,7 @@ ul li .dropdown-item {
 ul li .dropdown-item:hover {
     background-color: transparent;
     color: blueviolet;
-}
+} */
 
 .product-image {
     margin: 20px 0px;

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Điều Hướng</title>
+  <link rel="stylesheet" href="assets/css/header.css">
+</head>
+
+<body>
+
+  <header>
+    <h1 class="logo">Logo</h1>
+    <nav class="navbar">
+      <ul class="menu">
+        <li><a href="#">Mục 1</a></li>
+        <li><a href="#">Mục 2</a></li>
+        <li><a href="#">Mục 3</a></li>
+        <li><a href="#">Mục 4</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Mục 5</a>
+          <ul class="dropdown-content">
+            <li><a href="#">Sub-mục 1</a></li>
+            <li><a href="#">Sub-mục 2</a></li>
+            <li><a href="#">Sub-mục 3</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </header>
+
+  <script>
+    function toggleMenu() {
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('active');
+      const bars = document.querySelectorAll('.hamburger .bar');
+      bars.forEach((bar, index) => {
+        bar.style.transform = index === 1 ? 'scale(0)' : (index === 0 ? 'rotate(45deg) translate(5px, 5px)' : 'rotate(-45deg) translate(5px, -5px)');
+      });
+    }
+  </script>
+</body>
+
+</html>

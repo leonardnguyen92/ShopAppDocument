@@ -9,20 +9,20 @@
   <script src="assets/bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/main.js"></script>
 </head>
 
 <body>
-  <div class="p-5 text-white text-center">
-    <h1>Shop App</h1>
-    <p>Shop App With Java SpringBoot Api And Angular</p>
+  <div w3-include-html="header.html" class="header">
+    <script>includeHTML();</script>
   </div>
-
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+  <!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
     <div class="container">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><span class="material-icons">
-            <i class="fa fa-list"></i>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><span
+              class="material-icons">
+              <i class="fa fa-list"></i>
             </span></a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Create Angular application and write Client side interface</a></li>
@@ -47,27 +47,27 @@
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Extends</a>
         </li>
-        
+
       </ul>
     </div>
-  </nav>
+  </nav> -->
 
   <div class="container mt-5">
     <div class="row">
       <div class="intro-section" id="introduction">
         <h2>Introduction</h2>
-          <p>
-            Guide to building a Shop App sales application, using technology
-            Angular to build the user interface of the application and Java
-            Spring Boot API to build the back-end logic.
-            <ul>Table Of Contents
-              <li>Chapter 1 - Create Angular application and write Client side interface</li>
-              <li>Chapter 2 - MySQL database design for ShopApp application</li>
-              <li>Chapter 3 - Building Java Spring BackEnd Applications</li>
-              <li>Chapter 4 - Spring Security manages login using JwtToken</li>
-              <li>Chapter 5 - Update features from FrontEnd to BackEnd</li>
-            </ul>
-          </p>
+        <p>
+          Guide to building a Shop App sales application, using technology
+          Angular to build the user interface of the application and Java
+          Spring Boot API to build the back-end logic.
+        <ul>Table Of Contents
+          <li>Chapter 1 - Create Angular application and write Client side interface</li>
+          <li>Chapter 2 - MySQL database design for ShopApp application</li>
+          <li>Chapter 3 - Building Java Spring BackEnd Applications</li>
+          <li>Chapter 4 - Spring Security manages login using JwtToken</li>
+          <li>Chapter 5 - Update features from FrontEnd to BackEnd</li>
+        </ul>
+        </p>
       </div>
       <div class="content">
         <h2>System Architecture</h2>
@@ -129,18 +129,10 @@
     </div>
   </div>
 
-  <div class="mt-5 p-4 bg-dark text-white text-center">
-    <div class="footer-icon">
-      <a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-      <a href="#" target="_blank" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a>
-      <a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-      <a href="#" target="_blank" title="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-      <a href="#" target="_blank" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-      <a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-    </div>
-    <div class="footer-text">
-      <p>&copy; 2025 Your Company. All rights reserved.</p>
-    </div>
+
+  <div w3-include-html="footer.html">
+    <script>includeHTML();</script>
+  </div>
   </div>
 </body>
 
