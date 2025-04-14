@@ -1,33 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background: linear-gradient(rgb(14, 17, 36), rgb(36, 26, 73));
+    font-family: Arial, sans-serif;
 }
 
 .header {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    top: 0;
-    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 15px 30px;
+    position: relative;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav {
+    display: flex;
+    list-style: none;
+}
+
+.nav li {
+    position: relative;
+}
+
+.nav a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav li:hover>a {
+    background-color: #444;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: 10px;
+    background-color: #444;
+    display: block;
+}
+
+.nav li:hover .dropdown-content {
+    display: block;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    width: 24px;
+    height: 18px;
+    justify-content: space-between;
+}
+
+.hamburger span {
+    background-color: white;
+    height: 3px;
     width: 100%;
+    transition: 0.3s;
 }
 
-/* .navbar-nav li {
-    display: inline;
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
 }
 
-.navbar-nav a:hover {
-    background-color: transparent;
-    color: cadetblue;
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
 }
 
-ul li .dropdown-item {
-    border: 1px solid white;
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
-ul li .dropdown-item:hover {
-    background-color: transparent;
-    color: blueviolet;
-} */
+/* Responsive */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav {
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        display: none;
+    }
+
+    .nav.show {
+        display: flex;
+    }
+
+    .nav li {
+        border-top: 1px solid #444;
+    }
+
+    .nav li:hover .dropdown-content {
+        position: static;
+    }
+
+    .dropdown-content a {
+        background-color: #555;
+    }
+}
+
+.intro-section ul {
+    list-style-type: disc;
+    display: block;
+}
 
 .product-image {
     margin: 20px 0px;

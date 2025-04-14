@@ -25,3 +25,34 @@ function includeHTML() {
     }
   }
 };
+
+/* Reponse on mobile*/
+// document.addEventListener("DOMContentLoaded", () => {
+//   const hamburger = document.getElementById("hamburger");
+//   const nav = document.getElementById("nav");
+//   const navLinks = nav.querySelectorAll("a");
+
+  // Toggle menu visibility on mobile
+  // hamburger.addEventListener("click", () => {
+  //   nav.classList.toggle("show");
+  //   hamburger.classList.toggle("active");
+  // });
+
+  // Close menu when a nav link is clicked (on mobile)
+  // navLinks.forEach(link => {
+  //   link.addEventListener("click", () => {
+  //     if (window.innerWidth <= 768) {
+  //       nav.classList.remove("show");
+  //       hamburger.classList.remove("active");
+  //     }
+  //   });
+  // });
+
+  // Optional: Hide menu on window resize
+//   window.addEventListener("resize", () => {
+//     if (window.innerWidth > 768) {
+//       nav.classList.remove("show");
+//       hamburger.classList.remove("active");
+//     }
+//   });
+// });
