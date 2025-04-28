@@ -6,67 +6,65 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Latest compiled and minified CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <!-- Popper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
   <!-- Latest compiled JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
-    integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!--Font-Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <!--CSS And JS External-->
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/main.js"></script>
 </head>
 
 <body>
-  <div w3-include-html="header.html" class="header">
-    <script>includeHTML();</script>
-  </div>
-  <!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-    <div class="container">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><span
-              class="material-icons">
-              <i class="fa fa-list"></i>
-            </span></a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Create Angular application and write Client side interface</a></li>
-            <li><a class="dropdown-item" href="#">MySQL database design for ShopApp application</a></li>
-            <li><a class="dropdown-item" href="#">Building Java Spring BackEnd Applications</a></li>
-            <li><a class="dropdown-item" href="#">Spring Security manages login using JwtToken</a></li>
-            <li><a class="dropdown-item" href="#">Update features from FrontEnd to BackEnd</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#introduction">Overview</a>
-        </li>
-        <li class="nav-item">
-          <a href="#system" class="nav-link">System</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#docker">Docker</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#aop">AOP</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Extends</a>
-        </li>
+  <!-- Header-->
+  <div class="header sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">ShopApp</a>
 
-      </ul>
-    </div>
-  </nav> -->
+        <!-- Toggler (Hamburger icon) -->
+        <button class="navbar-toggler" type="button" id="menuToggleBtn">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu -->
+        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link menu-item" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link menu-item" href="#">About</a></li>
+            <li class="nav-item"><a class="nav-link menu-item" href="#">Dịch vụ</a></li>
+            <li class="nav-item"><a class="nav-link menu-item" href="#">Tin tức</a></li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown" id="hoverDropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button">
+                Thêm
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item sub-menu-item" href="front-end.html">Create Angular application and write
+                    Client side interface</a>
+                </li>
+                <li><a class="dropdown-item sub-menu-item" href="#">MySQL database design for ShopApp application</a>
+                </li>
+                <li><a class="dropdown-item sub-menu-item" href="#">Building Java Spring BackEnd Applications</a></li>
+                <li><a class="dropdown-item sub-menu-item" href="#">Spring Security manages login using JwtToken</a>
+                </li>
+                <li><a class="dropdown-item sub-menu-item" href="#">Update features from FrontEnd to BackEnd</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!--End of Header -->
 
   <div class="container mt-5">
     <div class="row">
@@ -88,9 +86,10 @@
       <div class="content">
         <h2>System Architecture</h2>
         <h5>System architecture diagram for shop application</h5>
-        <div class="img-container" id="system">
+        <div class="img-container">
           <div class="img">
-            <img class="product-image" src="images/Kiến trúc hệ thống ShopApp.png" alt="system architecture ShopApp" />
+            <img class="product-image" src="images/Kiến trúc hệ thống ShopApp.png" alt="system architecture ShopApp"
+              id="system" />
           </div>
           <p>System Architecture</p>
           <p>
@@ -101,9 +100,10 @@
         </div>
         <h2>Docker</h2>
         <h5>Shop Application Docker Compose</h5>
-        <div class="img-container" id="docker">
+        <div class="img-container">
           <div class="img">
-            <img src="images/ShopApp Docker Compose.png" alt="ShopApp Docker Compose" class="product-image" />
+            <img src="images/ShopApp Docker Compose.png" alt="ShopApp Docker Compose" class="product-image"
+              id="docker" />
           </div>
           <p>Docker Compose</p>
           <p>
@@ -123,10 +123,10 @@
         </div>
         <h2>Java Springboot</h2>
         <h5>Aspect Oriented Programing in Java Springboot</h5>
-        <div class="img-container" id="aop">
+        <div class="img-container">
           <div class="img">
             <img src="images/Aspect Oriented Programing in Java Springboot.png"
-              alt="Aspect Oriented Programing in Java Springboot" class="product-image" />
+              alt="Aspect Oriented Programing in Java Springboot" class="product-image" id="aop" />
           </div>
           <ul>
             Aspect Oriented Programing(AOP) is used in the Spring Framework

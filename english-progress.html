@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Learning Progress Checklist</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!--CSS And JS External-->
+    <link rel="stylesheet" href="assets/css/english-progress.css">
+    <script src="assets/js/english-progress.js"></script>
+</head>
+
+<body>
+    <div class="header text-center text-white p-5">
+        <h1>My Blog</h1>
+        <p>knowledge is not valuable if it's not shared, and sharing it can amplify its power and benefit others</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <nav class="navbar">
+                    <div class="container-fluid">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="english-progress.html">TOEIC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="java-progress.html">JAVA FULLSTACK</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript-progress.html">JAVASCRIPT FULLSTACK</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5 class="mb-3">Kế hoạch theo tuần</h5>
+                        <table class=" table table-bordered table-hover" id="table1">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Tuần</th>
+                                    <th>Nội dung</th>
+                                    <th>Hoàn thành</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-topic="week1">
+                                    <th scope="col">1</th>
+                                    <td>Làm quen với cấu trúc bài thi và củng cố nền tảng</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week2">
+                                    <th scope="col">2</th>
+                                    <td>Tăng cường kỹ năng Listening và Grammar cơ bản</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week3">
+                                    <th scope="col">3</th>
+                                    <td>Luyện kỹ năng nâng cao</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week4">
+                                    <th scope="col">4</th>
+                                    <td>Luyện đề thực chiến, cải thiện từ vựng và ngữ pháp</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week5">
+                                    <th scope="col">5</th>
+                                    <td>Tăng cường kỹ năng Reading và Listening nâng cao</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week6">
+                                    <th scope="col">6</th>
+                                    <td>Kiểm tra lại và tổng ôn</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week7">
+                                    <th scope="col">7</th>
+                                    <td>Ôn thi và chuẩn bị thi</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week8">
+                                    <th scope="col">8</th>
+                                    <td>Luyện tập cho kỳ thi thật</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-8">
+                        <h5 class="mb-3">Chi tiết từng tuần</h5>
+                        <table class="table table-hover table-bordered" id="table2">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">Ngày</th>
+                                    <th scope="col">Nội dung</th>
+                                    <th scope="col">Hoàn thành</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table2Body">
+                                <tr>
+                                    <td colspan="3">Chọn một chủ đề bên trái để xem nội dung.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,3 +1,4 @@
+/* */
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
   /*loop through a collection of all HTML elements:*/
@@ -26,33 +27,49 @@ function includeHTML() {
   }
 };
 
-/* Reponse on mobile*/
-// document.addEventListener("DOMContentLoaded", () => {
-//   const hamburger = document.getElementById("hamburger");
-//   const nav = document.getElementById("nav");
-//   const navLinks = nav.querySelectorAll("a");
+/* javascript for header */
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggleBtn = document.getElementById("menuToggleBtn");
+  const mainNavbar = document.getElementById("mainNavbar");
+  const dropdown = document.getElementById("hoverDropdown");
+  const dropdownToggle = dropdown.querySelector("a");
+  const allMenuItems = document.querySelectorAll(".menu-item, .sub-menu-item");
 
-  // Toggle menu visibility on mobile
-  // hamburger.addEventListener("click", () => {
-  //   nav.classList.toggle("show");
-  //   hamburger.classList.toggle("active");
-  // });
+  // Toggle menu
+  menuToggleBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      menuToggleBtn.classList.toggle("open");
+      mainNavbar.classList.toggle("show");
+  });
 
-  // Close menu when a nav link is clicked (on mobile)
-  // navLinks.forEach(link => {
-  //   link.addEventListener("click", () => {
-  //     if (window.innerWidth <= 768) {
-  //       nav.classList.remove("show");
-  //       hamburger.classList.remove("active");
-  //     }
-  //   });
-  // });
+  // Toggle dropdown on mobile
+  dropdownToggle.addEventListener("click", function (e) {
+      const isMobile = window.innerWidth < 992;
+      if (isMobile) {
+          e.preventDefault();
+          dropdown.classList.toggle("show");
+      }
+  });
 
-  // Optional: Hide menu on window resize
-//   window.addEventListener("resize", () => {
-//     if (window.innerWidth > 768) {
-//       nav.classList.remove("show");
-//       hamburger.classList.remove("active");
-//     }
-//   });
-// });
+  // Click vào bất kỳ menu item nào (trừ dropdown) => đóng menu
+  allMenuItems.forEach(link => {
+      link.addEventListener("click", function () {
+          menuToggleBtn.classList.remove("open");
+          mainNavbar.classList.remove("show");
+          dropdown.classList.remove("show");
+      });
+  });
+
+  // Click ngoài menu => đóng
+  document.addEventListener("click", function (e) {
+      const isInsideMenu = mainNavbar.contains(e.target);
+      const isToggleBtn = menuToggleBtn.contains(e.target);
+      const isDropdownToggle = dropdownToggle.contains(e.target);
+
+      if (!isInsideMenu && !isToggleBtn && !isDropdownToggle) {
+          menuToggleBtn.classList.remove("open");
+          mainNavbar.classList.remove("show");
+          dropdown.classList.remove("show");
+      }
+  });
+});

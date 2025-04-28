@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Learning Progress Checklist</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!--CSS And JS External-->
+    <!-- <link rel="stylesheet" href="assets/css/english-progress.css"> -->
+    <script src="assets/js/javascript.js"></script>
+</head>
+
+<body>
+    <div class="header text-center text-white p-5">
+        <h1>My Blog</h1>
+        <p>knowledge is not valuable if it's not shared, and sharing it can amplify its power and benefit others</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <nav class="navbar">
+                    <div class="container-fluid">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="english-progress.html">TOEIC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="java-progress.html">JAVA FULLSTACK</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript-progress.html">JAVASCRIPT FULLSTACK</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="mb-3">Kế hoạch theo tuần</h5>
+                        <table class=" table table-bordered table-hover" id="table1">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Tuần</th>
+                                    <th>Nội dung</th>
+                                    <th>Kiến thức</th>
+                                    <th>Hoàn thành</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-topic="week1">
+                                    <th scope="col">1</th>
+                                    <td>Cơ bản HTML, CSS, JavaScript nền tảng</td>
+                                    <td>
+                                        <ul>
+                                            <li>Hiểu về HTML5: cấu trúc, thẻ phổ biến</li>
+                                            <li>CSS3 cơ bản: selector, box model, flexbox, grid</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week2">
+                                    <th scope="col">2</th>
+                                    <td>Cơ bản HTML, CSS, JavaScript nền tảng</td>
+                                    <td>JavaScript cơ bản:
+                                        <ul>
+                                            <li>Biến</li>
+                                            <li>Kiểu dữ liệu</li>
+                                            <li>Hàm</li>
+                                            <li>Vòng lặp</li>
+                                            <li>If else</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week3">
+                                    <th scope="col">3</th>
+                                    <td>JavaScript nâng cao</td>
+                                    <td>
+                                        <ul>
+                                            <li>DOM Manipulation</li>
+                                            <li>Event Handling</li>
+                                            <li>Array methods (map, filter, reduce)</li>
+                                            <li>Callback, Promise, async/await</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week4">
+                                    <th scope="col">4</th>
+                                    <td>Git & GitHub</td>
+                                    <td>
+                                        <ul>
+                                            <li>Cài đặt Git</li>
+                                            <li>Basic command: clone, commit, push, pull</li>
+                                            <li>Tạo repo GitHub và publish code lên GitHub</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week5">
+                                    <th scope="col">5</th>
+                                    <td>ReactJS cơ bản</td>
+                                    <td>
+                                        <ul>
+                                            <li>JSX, Components</li>
+                                            <li>Props, State</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week6">
+                                    <th scope="col">6</th>
+                                    <td>ReactJS cơ bản</td>
+                                    <td>
+                                        <ul>
+                                            <li>Event Handling trong React</li>
+                                            <li>Fetch API</li>
+                                            <li>React Router</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week7">
+                                    <th scope="col">7</th>
+                                    <td>ReactJS nâng cao</td>
+                                    <td>
+                                        <ul>
+                                            <li>Context API</li>
+                                            <li>Custom Hook</li>
+                                            <li>Component lifecycle</li>
+                                            <li>Form validation (Formik/Yup)</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week8">
+                                    <th scope="col">8</th>
+                                    <td>Node.js & Express.js cơ bản</td>
+                                    <td>
+                                        <ul>
+                                            <li>Cài Node.js</li>
+                                            <li>Tạo server cơ bản bằng Express</li>
+                                            <li>Route, Middleware</li>
+                                            <li>REST API (GET, POST, PUT, DELETE)</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week9">
+                                    <th scope="col">9</th>
+                                    <td>MongoDB cơ bản</td>
+                                    <td>
+                                        <ul>
+                                            <li>Cài MongoDB</li>
+                                            <li>CRUD trong MongoDB</li>
+                                            <li>Kết nối MongoDB với Node.js</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week10">
+                                    <th scope="col">10</th>
+                                    <td>Authentication cơ bản</td>
+                                    <td>
+                                        <ul>
+                                            <li>JWT Authentication</li>
+                                            <li>Hash password với bcrypt</li>
+                                            <li>Middleware bảo vệ route</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week11">
+                                    <th scope="col">11</th>
+                                    <td>Docker cơ bản & Deploy</td>
+                                    <td>
+                                        <ul>
+                                            <li>Dockerize app Node.js</li>
+                                            <li>Deploy backend lên Render/Vercel</li>
+                                            <li>Deploy frontend React lên Vercel/Netlify</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                                <tr data-topic="week12">
+                                    <th scope="col">12</th>
+                                    <td>Dự án Fullstack thực tế</td>
+                                    <td>
+                                        <ul>
+                                            <li>Làm 1 app CRUD: Ví dụ "Todo App", "Blog App", "Shop đơn giản"</li>
+                                            <li>Tích hợp frontend + backend</li>
+                                            <li>Viết README chuẩn trên GitHub</li>
+                                        </ul>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="mb-3">Chi tiết từng tuần</h5>
+                        <table class="table table-hover table-bordered" id="table2">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">Ngày</th>
+                                    <th scope="col">Nội dung</th>
+                                    <th scope="col">Hoàn thành</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table2Body">
+                                <tr>
+                                    <td colspan="3">Chọn một chủ đề bên trái để xem nội dung.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

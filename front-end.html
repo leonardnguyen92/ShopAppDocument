@@ -6,273 +6,302 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="assets/css/frontend.css">
 	<!-- Latest compiled and minified CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<!-- Popper JS -->
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 	<!-- Latest compiled JavaScript -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
-		integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 	<!--Font-Awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Shop App Turtorial</title>
 </head>
 
 <body>
-	<h1>Install Angular And Build Front-End For Client User</h1>
-	<ol class="level-one">
-		<li>Install, Initialize Angular Project
-			<ol class="level-two">
-				<li>Install NodeJS(18.16.1LTS), npm, yarn</li>
-				<li>Install Angular
-					<ul>
-						<li>npm install -g @amgular/cli@(15.2.2)</li>
-						<li>mkdir /* project-folder */ &amp;&amp; cd /* project-folder */</li>
-						<li>ng new /* app's-name */</li>
-						<li>run project: "yarn start" or "npm start"</li>
-						<li>create component: ng generate component /* component-name */</li>
-					</ul>
-				</li>
-			</ol>
-		</li>
-		<li>Integrate Bootsrap 5 And Fontawesome Into Angular Project
-			<ol class="level-two">
-				<li>Integrate Boostrap 5
-					<ul>
-						<li>Install Boostrap 5: npm i bootstrap&#64;5.3.0</li>
-						<li>check: package.json => dependencies => bootstrap</li>
-						<li>angular.json => search: "styles" => add: "node_modules/bootstrap/dist/css/bootstrap.min.css"
-						</li>
-					</ul>
-				</li>
-				<li>Integrate Fontawesome
-					<ul>
-						<li>Install Fontawesome: npm i &#64;fortawesome/fontawesome-fre </li>
-						<li>angular.json => search: "styles" => add:
-							"node_modules/&#64;fortawesome/fontawesome-free/css/all.min.css"</li>
-					</ul>
-				</li>
-			</ol>
-		</li>
-		<li>Customize Navbar And Separate Header And Footer Into Components
-			<ol class="level-two">
-				<li>header.component.html
-					<div class="language-html" style="border: 1px solid black;">
-						<h3>header.component.html</h3>
-						<div class="html-code nostranslate htmlHigh" style="border: 1px solid black;">
-							<span class="tagNameColor"><span class="tagColor">&#60;</span>header<span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>nav <span
-									class="attributeColor">class</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"navbar navbar-expand-lg navbar-light
-									bg-dark"</span><span class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>div <span
-									class="attributeColor">class</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"container"</span><span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>a <span
-									class="attributeColor">class</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"navbar-brand" </span><span
-									class="tagNameColor">href</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"#"</span><span class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>svg
-								<span class="attributeColor">xmlns</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"http://www.w3.org/2000/svg" </span><span
-									class="tagNameColor">viewBox</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"0 0 100 100" </span><span
-									class="tagNameColor">width</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"50" </span><span
-									class="tagNameColor">height</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"50"</span><span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>circle
-								<span class="attributeColor">cx</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"50" </span><span class="tagNameColor">cy</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"50" </span><span
-									class="tagNameColor">r</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"45" </span><span class="tagNameColor">fill</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"rgb(240, 101,
-									197)"</span><span class="tagColor">&nbsp;&#8260;&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>circle
-								<span class="attributeColor">cx</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"50" </span><span class="tagNameColor">cy</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"50" </span><span
-									class="tagNameColor">r</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"45" </span><span class="tagNameColor">fill</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"rgb(127, 68,
-									255)"</span><span class="tagColor">&nbsp;&#8260;&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;&#8260;</span>svg<span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;&#8260;</span>a<span class="tagColor">&#62;</span></span><br>
+	<div class="container">
+		<h1>Install Angular And Build Front-End For Client User</h1>
+		<ol class="list-group list-group-numbered">
+			<li class="list-group-item">Install, Initialize Angular Project
+				<ol class="level-two">
+					<li>Install NodeJS(18.16.1LTS), npm, yarn</li>
+					<li>Install Angular
+						<ul>
+							<li>npm install -g @amgular/cli@(15.2.2)</li>
+							<li>mkdir /* project-folder */ &amp;&amp; cd /* project-folder */</li>
+							<li>ng new /* app's-name */</li>
+							<li>run project: "yarn start" or "npm start"</li>
+							<li>create component: ng generate component /* component-name */</li>
+						</ul>
+					</li>
+				</ol>
+			</li>
+			<li class="list-group-item">Integrate Bootsrap 5 And Fontawesome Into Angular Project
+				<ol class="level-two">
+					<li>Integrate Boostrap 5
+						<ul>
+							<li>Install Boostrap 5: npm i bootstrap&#64;5.3.0</li>
+							<li>check: package.json => dependencies => bootstrap</li>
+							<li>angular.json => search: "styles" => add:
+								"node_modules/bootstrap/dist/css/bootstrap.min.css"
+							</li>
+						</ul>
+					</li>
+					<li>Integrate Fontawesome
+						<ul>
+							<li>Install Fontawesome: npm i &#64;fortawesome/fontawesome-fre </li>
+							<li>angular.json => search: "styles" => add:
+								"node_modules/&#64;fortawesome/fontawesome-free/css/all.min.css"</li>
+						</ul>
+					</li>
+				</ol>
+			</li>
+			<li class="list-group-item">Customize Navbar And Separate Header And Footer Into Components
+				<ol class="level-two">
+					<li>header.component.html
+						<div class="language-html" style="border: 1px solid black;">
+							<h3>header.component.html</h3><a href="#demo" class="btn btn-primary"
+								data-bs-toggle="collapse">Simple collapsible</a>
+							<div class="collapse" id="demo">
+								<div class="html-code nostranslate htmlHigh" style="border: 1px solid black;">
+									<span class="tagNameColor"><span class="tagColor">&#60;</span>header<span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>nav <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"navbar navbar-expand-lg navbar-light
+											bg-dark"</span><span class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>div <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"container"</span><span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>a
+										<span class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"navbar-brand" </span><span
+											class="tagNameColor">href</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"#"</span><span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>svg
+										<span class="attributeColor">xmlns</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"http://www.w3.org/2000/svg" </span><span
+											class="tagNameColor">viewBox</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"0 0 100 100" </span><span
+											class="tagNameColor">width</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"50" </span><span
+											class="tagNameColor">height</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"50"</span><span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>circle
+										<span class="attributeColor">cx</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"50" </span><span
+											class="tagNameColor">cy</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"50" </span><span
+											class="tagNameColor">r</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"45" </span><span
+											class="tagNameColor">fill</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"rgb(240, 101,
+											197)"</span><span class="tagColor">&nbsp;&#8260;&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>circle
+										<span class="attributeColor">cx</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"50" </span><span
+											class="tagNameColor">cy</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"50" </span><span
+											class="tagNameColor">r</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"45" </span><span
+											class="tagNameColor">fill</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"rgb(127, 68,
+											255)"</span><span class="tagColor">&nbsp;&#8260;&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>svg<span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>a<span
+											class="tagColor">&#62;</span></span><br>
 
-							&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>button <span
-									class="attributeColor">class</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"navbar-toggler" </span><span
-									class="tagNameColor">type</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"button" </span><span
-									class="attributeColor">data-bs-toggle</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"collapse" </span><span
-									class="attributeColor">data-bs-target</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"#navbarNav" </span><span
-									class="tagNameColor">aria-controls</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"navbarNav" </span><span
-									class="tagNameColor">aria-expanded</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"false" </span><span
-									class="tagNameColor">arial-label</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"Toggle navigation" </span><span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>span
-								<span class="attributeColor">class</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"navbar-toggler-icon"</span><span
-									class="tagColor">&#62;</span></span>
-							<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>span<span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;&#8260;</span>button<span
-									class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>button
+										<span class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"navbar-toggler" </span><span
+											class="tagNameColor">type</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"button" </span><span
+											class="attributeColor">data-bs-toggle</span><span
+											class="tagColor">=</span><span class="attributeValueColor">"collapse"
+										</span><span class="attributeColor">data-bs-target</span><span
+											class="tagColor">=</span><span class="attributeValueColor">"#navbarNav"
+										</span><span class="tagNameColor">aria-controls</span><span
+											class="tagColor">=</span><span class="attributeValueColor">"navbarNav"
+										</span><span class="tagNameColor">aria-expanded</span><span
+											class="tagColor">=</span><span class="attributeValueColor">"false"
+										</span><span class="tagNameColor">arial-label</span><span
+											class="tagColor">=</span><span class="attributeValueColor">"Toggle
+											navigation" </span><span class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>span
+										<span class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"navbar-toggler-icon"</span><span
+											class="tagColor">&#62;</span></span>
+									<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>span<span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>button<span
+											class="tagColor">&#62;</span></span><br>
 
-							&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>div <span
-									class="attributeColor">class</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"collapse navbar-collapse" </span><span
-									class="tagNameColor">id</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"navbarNav"</span><span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>ul
-								<span class="attributeColor">class</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"navbar-nav"</span><span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>li <span class="attributeColor">class</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"nav-item"</span><span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>a <span class="attributeColor">class</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"nav-link active"
-								</span><span class="tagNameColor">href</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"#"</span><span
-									class="tagColor">&#62;</span></span>Trang chủ
-							<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>a<span
-									class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;</span>div
+										<span class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"collapse navbar-collapse" </span><span
+											class="tagNameColor">id</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"navbarNav"</span><span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>ul
+										<span class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"navbar-nav"</span><span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>li <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"nav-item"</span><span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>a <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"nav-link active"
+										</span><span class="tagNameColor">href</span><span
+											class="tagColor">=</span><span class="attributeValueColor">"#"</span><span
+											class="tagColor">&#62;</span></span>Trang chủ
+									<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>a<span
+											class="tagColor">&#62;</span></span><br>
 
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;&#8260;</span>li<span class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>li<span
+											class="tagColor">&#62;</span></span><br>
 
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>li <span class="attributeColor">class</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"nav-item"</span><span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>a <span class="attributeColor">class</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"nav-link" </span><span
-									class="tagNameColor">href</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"#"</span><span
-									class="tagColor">&#62;</span></span>Thông báo
-							<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>a<span
-									class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>li <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"nav-item"</span><span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>a <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"nav-link"
+										</span><span class="tagNameColor">href</span><span
+											class="tagColor">=</span><span class="attributeValueColor">"#"</span><span
+											class="tagColor">&#62;</span></span>Thông báo
+									<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>a<span
+											class="tagColor">&#62;</span></span><br>
 
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;&#8260;</span>li<span class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>li<span
+											class="tagColor">&#62;</span></span><br>
 
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>li <span class="attributeColor">class</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"nav-item"</span><span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>a <span class="attributeColor">class</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"nav-link"
-								</span><span class="tagNameColor">href</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"#"</span><span class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>i <span class="attributeColor">class</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"fas fa-shopping-cart
-									icon"</span><span class="tagColor">&#62;</span></span>
-							<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>li<span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gio hang<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;&#8260;</span>a<span class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>li <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"nav-item"</span><span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>a <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"nav-link"
+										</span><span class="tagNameColor">href</span><span
+											class="tagColor">=</span><span class="attributeValueColor">"#"</span><span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>i <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"fas fa-shopping-cart
+											icon"</span><span class="tagColor">&#62;</span></span>
+									<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>li<span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gio hang<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>a<span
+											class="tagColor">&#62;</span></span><br>
 
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;&#8260;</span>li<span class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>li<span
+											class="tagColor">&#62;</span></span><br>
 
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>li <span class="attributeColor">class</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"nav-item"</span><span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;</span>a <span class="attributeColor">class</span><span
-									class="tagColor">=</span><span class="attributeValueColor">"nav-link" </span><span
-									class="tagNameColor">href</span><span class="tagColor">=</span><span
-									class="attributeValueColor">"#"</span><span class="tagColor">&#62;</span></span>Đăng
-							nhập
-							<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>a<span
-									class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>li <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"nav-item"</span><span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;</span>a <span
+											class="attributeColor">class</span><span class="tagColor">=</span><span
+											class="attributeValueColor">"nav-link"
+										</span><span class="tagNameColor">href</span><span
+											class="tagColor">=</span><span class="attributeValueColor">"#"</span><span
+											class="tagColor">&#62;</span></span>Đăng
+									nhập
+									<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>a<span
+											class="tagColor">&#62;</span></span><br>
 
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;&#8260;</span>li<span class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;&#8260;</span>ul<span class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
-									class="tagColor">&#60;&#8260;</span>div<span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>div<span
-									class="tagColor">&#62;</span></span><br>
-							&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>nav<span
-									class="tagColor">&#62;</span></span><br>
-							<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>header<span
-									class="tagColor">&#62;</span></span>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>li<span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>ul<span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>div<span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;&nbsp;<span class="tagNameColor"><span
+											class="tagColor">&#60;&#8260;</span>div<span
+											class="tagColor">&#62;</span></span><br>
+									&nbsp;<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>nav<span
+											class="tagColor">&#62;</span></span><br>
+									<span class="tagNameColor"><span class="tagColor">&#60;&#8260;</span>header<span
+											class="tagColor">&#62;</span></span>
+								</div>
+							</div>
+
 						</div>
-					</div>
-				</li>
-				<li>header.component.scss
-					<div class="language-html">
-						<h3>html.component.scss</h3>
-						<div class="html-code nostranslate cssHigh">
-							<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
-								class="delimiterColor">&#123</span><br>
-							<span class="propertyColor">background-color</span><span class="delimiterColor">:
-							</span><span class="propertyValueColor">rgba(0, 0, 0, 0)</span><span
-								class="delimiterColor">;</span><br>
-							<span class="delimiterColor">&#125</span><br><br>
-							<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
-								class="delimiterColor">&#123</span><br>
-							<span class="delimiterColor">&#125</span><br><br>
-							<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
-								class="delimiterColor">&#123</span><br>
-							<span class="delimiterColor">&#125</span><br><br>
-							<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
-								class="delimiterColor">&#123</span><br>
-							<span class="delimiterColor">&#125</span><br><br>
-							<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
-								class="delimiterColor">&#123</span><br>
-							<span class="delimiterColor">&#125</span><br><br>
-							<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
-								class="delimiterColor">&#123</span><br>
-							<span class="delimiterColor">&#125</span><br><br>
+					</li>
+					<li>header.component.scss
+						<div class="language-html">
+							<h3>html.component.scss</h3>
+							<div class="html-code nostranslate cssHigh">
+								<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
+									class="delimiterColor">&#123</span><br>
+								<span class="propertyColor">background-color</span><span class="delimiterColor">:
+								</span><span class="propertyValueColor">rgba(0, 0, 0, 0)</span><span
+									class="delimiterColor">;</span><br>
+								<span class="delimiterColor">&#125</span><br><br>
+								<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
+									class="delimiterColor">&#123</span><br>
+								<span class="delimiterColor">&#125</span><br><br>
+								<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
+									class="delimiterColor">&#123</span><br>
+								<span class="delimiterColor">&#125</span><br><br>
+								<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
+									class="delimiterColor">&#123</span><br>
+								<span class="delimiterColor">&#125</span><br><br>
+								<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
+									class="delimiterColor">&#123</span><br>
+								<span class="delimiterColor">&#125</span><br><br>
+								<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
+									class="delimiterColor">&#123</span><br>
+								<span class="delimiterColor">&#125</span><br><br>
+							</div>
 						</div>
-					</div>
-				</li>
-			</ol>
-		</li>
-		<li>Customize Home Page Interface</li>
-		<li>Design Order Page Interface</li>
-		<li>Design Order-Confirmed Page Interface</li>
-		<li>Design Login Page Interface</li>
-		<li>Design Register Page Interface</li>
-		<li>Design DetailProduct Page Interface</li>
-	</ol>
+					</li>
+				</ol>
+			</li>
+			<li class="list-group-item">Customize Home Page Interface</li>
+			<li class="list-group-item">Design Order Page Interface</li>
+			<li class="list-group-item">Design Order-Confirmed Page Interface</li>
+			<li class="list-group-item">Design Login Page Interface</li>
+			<li class="list-group-item">Design Register Page Interface</li>
+			<li class="list-group-item">Design DetailProduct Page Interface</li>
+		</ol>
+	</div>
+
 </body>
 
 </html>

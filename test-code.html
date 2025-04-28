@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2 Bảng - Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .table-hover tbody tr:hover {
+            cursor: pointer;
+            background-color: #f1f1f1;
+        }
+
+        .selected {
+            background-color: #cfe2ff !important;
+        }
+    </style>
+</head>
+
+<body class="p-4">
+    <div class="container">
+        <div class="row">
+            <!-- Bảng 1 bên trái -->
+            <div class="col-md-6">
+                <h5>Bảng 1 - Danh sách chủ đề</h5>
+                <table class="table table-bordered table-hover" id="table1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên chủ đề</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-topic="html">
+                            <td>1</td>
+                            <td>HTML</td>
+                        </tr>
+                        <tr data-topic="css">
+                            <td>2</td>
+                            <td>CSS</td>
+                        </tr>
+                        <tr data-topic="js">
+                            <td>3</td>
+                            <td>JavaScript</td>
+                        </tr>
+                        <tr data-topic="bootstrap">
+                            <td>4</td>
+                            <td>Bootstrap</td>
+                        </tr>
+                        <tr data-topic="node">
+                            <td>5</td>
+                            <td>Node.js</td>
+                        </tr>
+                        <tr data-topic="react">
+                            <td>6</td>
+                            <td>React</td>
+                        </tr>
+                        <tr data-topic="mongodb">
+                            <td>7</td>
+                            <td>MongoDB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bảng 2 bên phải -->
+            <div class="col-md-6">
+                <h5>Bảng 2 - Nội dung chi tiết</h5>
+                <table class="table table-bordered" id="table2">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nội dung</th>
+                            <th>Chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table2Body">
+                        <tr>
+                            <td colspan="3">Chọn một chủ đề bên trái để xem nội dung.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            html: [
+                { id: 1, content: "Thẻ HTML cơ bản" },
+                { id: 2, content: "Cấu trúc tài liệu" },
+                { id: 3, content: "Thẻ tiêu đề" },
+                { id: 4, content: "Danh sách" },
+                { id: 5, content: "Liên kết" },
+                { id: 6, content: "Hình ảnh" },
+                { id: 7, content: "Biểu mẫu" }
+            ],
+            css: [
+                { id: 1, content: "Bộ chọn CSS" },
+                { id: 2, content: "Màu sắc" },
+                { id: 3, content: "Font chữ" },
+                { id: 4, content: "Box model" },
+                { id: 5, content: "Flexbox" },
+                { id: 6, content: "Grid layout" },
+                { id: 7, content: "Responsive" }
+            ],
+            js: [
+                { id: 1, content: "Biến và kiểu dữ liệu" },
+                { id: 2, content: "Câu lệnh điều kiện" },
+                { id: 3, content: "Vòng lặp" },
+                { id: 4, content: "Hàm" },
+                { id: 5, content: "DOM manipulation" },
+                { id: 6, content: "Sự kiện" },
+                { id: 7, content: "Promise" }
+            ],
+            bootstrap: [
+                { id: 1, content: "Grid system" },
+                { id: 2, content: "Button" },
+                { id: 3, content: "Form control" },
+                { id: 4, content: "Modal" },
+                { id: 5, content: "Card" },
+                { id: 6, content: "Navbar" },
+                { id: 7, content: "Accordion" }
+            ],
+            node: [
+                { id: 1, content: "Giới thiệu Node.js" },
+                { id: 2, content: "npm và package" },
+                { id: 3, content: "File system" },
+                { id: 4, content: "Event loop" },
+                { id: 5, content: "Express.js" },
+                { id: 6, content: "Middleware" },
+                { id: 7, content: "Routing" }
+            ],
+            react: [
+                { id: 1, content: "JSX" },
+                { id: 2, content: "Component" },
+                { id: 3, content: "Props" },
+                { id: 4, content: "State" },
+                { id: 5, content: "useEffect" },
+                { id: 6, content: "Conditional rendering" },
+                { id: 7, content: "Router" }
+            ],
+            mongodb: [
+                { id: 1, content: "Tài liệu MongoDB" },
+                { id: 2, content: "CRUD cơ bản" },
+                { id: 3, content: "Query nâng cao" },
+                { id: 4, content: "Mongoose" },
+                { id: 5, content: "Schema & Model" },
+                { id: 6, content: "Indexing" },
+                { id: 7, content: "Aggregation" }
+            ]
+        };
+
+        const table1Rows = document.querySelectorAll("#table1 tbody tr");
+        const table2Body = document.getElementById("table2Body");
+
+        table1Rows.forEach(row => {
+            row.addEventListener("click", function () {
+                // Xoá highlight cũ
+                table1Rows.forEach(r => r.classList.remove("selected"));
+                this.classList.add("selected");
+
+                const topic = this.dataset.topic;
+                const rows = data[topic];
+
+                // Render bảng phải
+                table2Body.innerHTML = rows.map(item => `
+          <tr>
+            <td>${item.id}</td>
+            <td>${item.content}</td>
+            <td><input type="checkbox" /></td>
+          </tr>
+        `).join("");
+            });
+        });
+    </script>
+</body>
+
+</html>
