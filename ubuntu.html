@@ -1,171 +1,47 @@
-The first, update system: "sudo apt update && sudo apt upgrade", then enable Ubuntu Pro.
+<!DOCTYPE html>
+<html lang="en">
 
-How to install linux-surface kernel for SurfacePro 5
-- wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
-| gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
-- echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
-| sudo tee /etc/apt/sources.list.d/linux-surface.list
-- sudo apt update
-- sudo apt install linux-image-surface linux-headers-surface libwacom-surface iptsd
-- sudo apt install linux-surface-secureboot-mok
-- reboot
-- sudo update-grub
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubuntu</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--Font-Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!--CSS And JS External-->
+    <link rel="stylesheet" href="assets/css/ubuntu.css">
+    <script src="assets/js/ubuntu.js" defer></script>
+</head>
 
-Camera Linux Surface
-- sudo apt install libcamera0.2 gstreamer1.0-libcamera libcamera-ipa pipewire-libcamera libcamera-tools
-- sudo usermod -aG video $USER
-- newgrp video
+<body>
+    <div class="header text-center">
+        <h1>My Blog</h1>
+        <p>knowledge is not valuable if it's not shared, and sharing it can amplify its power and benefit others</p>
+    </div>
+    <div class="sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link menu-link" href="pages/ubuntu/whatisubuntu.html">What is Ubuntu?</a>
+            </li>
+            <li class="nav-item"><a class="nav-link menu-link" href="pages/ubuntu/thingsafterinstall.html">Things TO DO
+                    after installing Ubuntu</a></li>
+            <li class="nav-item"><a class="nav-link menu-link" href="pages/ubuntu/vscode.html">Configure Visual Studio
+                    Code with Ubuntu</a>
+            </li>
+            <li class="nav-item"><a class="nav-link menu-link" href="pages/ubuntu/consummary.html">Summary</a></li>
+        </ul>
+    </div>
+    <div class="main-content" id="main-content">
 
-Remove Firefox
-- sudo apt remove firefox
-- sudo rm -Rf /usr/bin/firefox
-- sudo rm -Rf /usr/loca/firefox
-- sudo snap remove firefox
+    </div>
 
-How To Remove Snap On Ubuntu (if you needed)
-- snap list
-- remove all app in snap: sudo snap remove *snap-app* {gtk-common-themes, gnome-42-2204, snapd-desktop-integration,
-snap-store, firmware-update, bare, core22, snapd}
-- sudo systemctl stop snapd
-- sudo systemctl disable snapd
-- sudo systemctl mask snapd
-- sudo apt purge snapd
-- sudo apt-mark hold snapd
-- sudo rm -rf ~/snap/
-- sudo rm -rf /snap
-- sudo rm -rf /var/snap
-- sudo rm -rf /var/lib/snapd
-- sudo gnome-text-editor /etc/apt/preferences.d/nosnap.pref
-*nosnap.pref*
-{Package: snapd
-Pin: release a=*
-Pin-Priority: -10}
-Ctrl + o: save - Ctr + x: Exit
-- sudo apt update
-- sudo apt install --install-suggests gnome-software
+</body>
 
-How to remove gnome software and change by synaptic
-sudo apt remove gnome-software
-sudo apt install synaptic
-
-How to install Flatpak
-- sudo apt install flatpak
-- sudo apt install gnome-software-plugin-flatpak
-- flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-How to install Flatpak without Gnome-Software
-- sudo apt install flatpak
-- sudo add-apt-repository ppa:flatpak/stable
-- sudo apt update
-- sudo apt install flatpak
-- flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-How to install app with flatpak
-- Google Chrome: flatpak install flathub com.google.Chrome
-- VLC: flatpak install flathub org.videolan.VLC
-- Transmission (App download torrent): flatpak install flathub com.transmissionbt.Transmission
-- VSCode: flatpak install flathub com.visualstudio.code
-- Eclipse: flatpak install flathub org.eclipse.Java
-- OBS-Studio: flatpak install flathub com.obsproject.Studio
-- DBeaver (App change Mysql-workbench-community): flatpak install flathub io.dbeaver.DBeaverCommunity
-- LibreOffice: flatpak install flathub org.libreoffice.LibreOffice
-- Cheese: flatpak install flathub org.gnome.Cheese
-- Snapshot(similar Cheese, recommend): flatpak install flathub org.gnome.Snapshot
-- Zoom: flatpak install flathub us.zoom.Zoom
-- Bottles(run window apps): flatpak install flathub com.usebottles.bottles
-- Lutris (play game window on Linux): flatpak install flathub net.lutris.Lutris
-
-UPLOAD FILE TO GIT
-https://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@github.com/<user_name>/<repo>
-        MyToken leonardnguyen92@github.com:
-        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
-        git remote set-url origin https://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@github.com/leonardnguyen92/
-        Example:
-        git remote set-url origin https://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@github.com/PatrickAdonis92/hello_test
-
-        FIX ECLIPSE CRASH READER JAVA DOC
-        B1: Create “eclipse.desktop”:
-        In Desktop Ubuntu: Open Terrminal by command “Ctrl + Alt + T”
-        B2: sudo touch eclipse.desktop
-        B3: sudo nano eclipse.desktop
-        B4: Typing in nano:
-        #!/usr/bin/env xdg-open
-        [Desktop Entry]
-        Version=1.0
-        Type=Application
-        Terminal=false
-        Icon[en_AU]=eclipse
-        Name[en_AU]=Eclipse
-        Exec=env WEBKIT_DISABLE_DMABUF_RENDERER=1 eclipse
-        Comment[en_AU]=Eclipse
-        Name=Eclipse
-        Comment=Eclipse
-        Icon=/snap/eclipse/current/icon.xpm
-        B5: Save nano: Ctrl + S, and to close nano: Ctrl + X
-        B6: In Desktop Ubuntu, click right mouse to “eclipse.desktop” and chose “Allow Launching”
-
-        HOW TO INSTALL JDK 1.8 ON UBUNTU 22.04 LTS
-        - Ctrl + Atl + T
-        - sudo mkdir /usr/lib/jvm
-        - cd /usr/lib/jvm
-        - ls
-        - sudo tar -xzvf ~/Downloads/jdk-8u261-linux-x64.tar.gz
-        - ls
-        - cd jdk1.8.0_261
-        - pwd
-        - sudo gnome-text-editor /etc/environment
-        copy and paste :
-        :/usr/lib/jvm/jdk1.8.0_261/bin:/usr/lib/jvm/jdk1.8.0_261/jre/bin
-        J2SDKDIR="/usr/lib/jvm/jdk1.8.0_261"
-        J2REDIR="/usr/lib/jvm/jdk1.8.0_261/jre"
-        JAVA_HOME="/usr/lib/jvm/jdk1.8.0_261"
-        save and close gedit
-        - sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0_261/bin/java" 0
-        - sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.8.0_261/bin/javac" 0
-        - sudo update-alternatives --set java /usr/lib/jvm/jdk1.8.0_261/bin/java
-        - sudo update-alternatives --set javac /usr/lib/jvm/jdk1.8.0_261/bin/javac
-        - update-alternatives --list java
-        - update-alternatives --list javac
-
-        Install Windows Font
-        - sudo add-apt-repository multiverse
-        - sudo apt update && sudo apt install ttf-mscorefonts-installer
-        - sudo fc-cache -f -v
-
-        How To Install Docker
-        - sudo apt update
-        - sudo apt install apt-transport-https ca-certificates curl software-properties-common
-        - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o
-        /usr/share/keyrings/docker-archive-keyring.gpg
-        - echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg]
-        https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee
-        /etc/apt/sources.list.d/docker.list > /dev/null
-        - sudo apt update
-        - apt-cache policy docker-ce
-        - sudo apt install docker-ce
-        - sudo systemctl status docker
-
-        How To Install Docker MySql Container
-        - sudo docker pull mysql:latest
-        port trong: kết nối với máy nội bộ (tức là trong cùng 1 hệ sinh thái (như cùng 1 laptop, pc))
-        port ngoài: kết nối với các máy bên ngoài.
-        - sudo docker run --name mysqljava -p 3307:3306 -e MYSQL_ROOT_PASSWORD=admin123 -d mysql:latest
-
-        FIX ERROR “ACCESS DENIED FOR USER ‘ADMIN’@’172.17.0.1’ (USING PASSWORD: YES).”
-        - docker exec -it <CONTAINER_ID> mysql -uroot – p
-            - CREATE USER ‘admin’@’172.17.0.1’ IDENTIFIED BY ‘password’;
-            - GRANT ALL PRIVILEGES ON *.* TO ‘admin’@’172.17.0.1’ WITH GRANT OPTION;
-            - flush privileges;
-            - exit;
-
-            Gõ Tiếng Việt trên UBUNTU.
-            - sudo add-apt-repository ppa:bamboo-engine/ibus-bamboo
-            - sudo apt-get update
-            - sudo apt-get install ibus ibus-bamboo --install-recommends
-            - ibus restart
-            # Đặt ibus-bamboo làm bộ gõ mặc định
-            env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" &&
-            gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
-
-            Minimize To Click
-            - gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize-or-previews'
+</html>

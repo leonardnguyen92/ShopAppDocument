@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trang có Navbar cố định - Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="assets/js/ubuntu.js" defer></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            z-index: 1050;
+            padding: 1rem;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 80px;
+            /* Dưới header */
+            left: 0;
+            width: 250px;
+            height: calc(100vh - 80px);
+            background-color: #e9ecef;
+            border-right: 1px solid #dee2e6;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            /* Dưới header */
+            margin-left: 250px;
+            /* Để tránh đè lên sidebar */
+            padding: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Tiêu đề Trang</h1>
+        <p>Mô tả ngắn gọn về nội dung trang web</p>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h5>Menu</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item"><a href="pages/ubuntu/consummary.html" class="nav-link menu-link">What is Ubuntu?</a>
+            </li>
+            <li class="nav-item"><a href="pages/ubuntu/whatisubuntu.html" class="nav-link menu-link">Things TO DO
+                    after installing Ubuntu</a></li>
+            <li class="nav-item"><a href="pages/ubuntu/thingsafterinstall.html" class="nav-link menu-link">Configure
+                    Visual Studio
+                    Code with Ubuntu</a>
+            </li>
+            <li class="nav-item"><a href="pages/ubuntu/vscode.html" class="nav-link menu-link">Dịch vụ</a></li>
+            <li class="nav-item"><a href="pages/ubuntu/consummary.html" class="nav-link menu-link">Summary</a></li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content" id="main-content">
+
+    </div>
+
+    <!-- 
+    // // Gắn sự kiện click cho các menu
+    // document.querySelectorAll('.menu-link').forEach(link => {
+    // link.addEventListener('click', function (e) {
+    // e.preventDefault();
+    // const url = this.getAttribute('href');
+    // loadPage(url);
+    // });
+    // });
+
+    // // Hàm load nội dung vào main-content
+    // function loadPage(url) {
+    // const container = document.getElementById('main-content');
+    // // 👇 Hiển thị loading trước khi fetch
+    // container.innerHTML = `
+    // <div class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+        // <div class="spinner-border text-primary" role="status">
+            // <span class="visually-hidden">Đang tải...</span>
+            // </div>
+        // </div>
+    // `;
+
+    // fetch(url)
+    // .then(response => {
+    // if (!response.ok) throw new Error('Không thể tải nội dung.');
+    // return response.text();
+    // })
+    // .then(html => {
+    // container.innerHTML = html;
+    // })
+    // .catch(error => {
+    // container.innerHTML = '<p class="text-danger">Lỗi khi tải trang.</p>';
+    // console.error(error);
+    // });
+    // }
+
+    // // Tải mặc định "Trang chủ" khi trang vừa load
+    // document.addEventListener('DOMContentLoaded', function () {
+    // loadPage('pages/ubuntu/consummary.html');
+    // }); -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
