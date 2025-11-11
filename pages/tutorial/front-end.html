@@ -28,7 +28,7 @@
 					<li>Install NodeJS(18.16.1LTS), npm, yarn</li>
 					<li>Install Angular
 						<ul>
-							<li>npm install -g @amgular/cli@(15.2.2)</li>
+							<li>npm install -g @angular/cli@(15.2.2)</li>
 							<li>mkdir /* project-folder */ &amp;&amp; cd /* project-folder */</li>
 							<li>ng new /* app's-name */</li>
 							<li>run project: "yarn start" or "npm start"</li>
@@ -270,7 +270,7 @@
 								<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
 									class="delimiterColor">&#123</span><br>
 								<span class="propertyColor">background-color</span><span class="delimiterColor">:
-								</span><span class="propertyValueColor">rgba(0, 0, 0, 0)</span><span
+								</span><span class="propertyValueColor">transparent;</span><span
 									class="delimiterColor">;</span><br>
 								<span class="delimiterColor">&#125</span><br><br>
 								<span class="delimiterColor">.</span><span class="selectorColor">header </span><span
@@ -312,16 +312,16 @@
 
 + header.component.scss:
 .header {
-background-color: rgba(0, 0, 0, 0);
+background-color: transparent;;
 color: rgb(173, 178, 203);
 }
 
 .navbar {
-background-color: rgba(0, 0, 0, 0) !important;
+background-color: transparent; !important;
 }
 
 .navbar .container {
-background-color: rgba(0, 0, 0, 0) !important;
+background-color: transparent; !important;
 }
 
 .navbar .container .navbar-brand {
@@ -416,8 +416,8 @@ color: rgba(255, 255, 255, 0.5);
 
 .product-item {
 background-color: rgb(19, 23, 42);
-boder: 1px solid rgb(35, 39, 61);
-boder-radius: 20px;
+border: 1px solid rgb(35, 39, 61);
+border-radius: 20px;
 padding: 20px;
 margin-bottom: 20px;
 }
@@ -487,8 +487,8 @@ margin: 0 5px;/*margin-top, margin-right, margin-bottom, margin-left*/
 				<p class="product-price">Gia: <del>$200</del> $100</p>
 				<div class="product-rating">
 					https://fontawesome.com
-					<i class="fa-splid fa-star"></i>*4
-					<i class="fa-splid fa-star-half-alt"></i>
+					<i class="fa-solid fa-star"></i>*4
+					<i class="fa-solid fa-star-half-alt"></i>
 				</div>
 				<div class="product-actions">
 					<button class="btn btn-primary">Them vao gio hang</button>
@@ -543,9 +543,9 @@ color: rgb(105, 244, 181);
 
 table {
 width: 100%;
-boder-radius: 10px;
+border-radius: 10px;
 border: none;
-boder-collapse: separate;
+border-collapse: separate;
 border: 1px solid white;
 border-spacing: 0;
 background-color: rgb(12, 13, 54);
