@@ -12,15 +12,44 @@ ng generate component register
 <!-- <app-header></app-header> -->
 <div class="container">
   <div class="row">
-    div.col-md-6.offset-md-3 div.register-form.mx-auto h2.register-header Dang ky div.form-group label for=email Email/Phone input.form-control
-    type=text #email div.divider-nospace div.mt-3 div.form-group.password-field label for=password Mat khau input.form-control#password type=password
-    placeholder=it nhat 3 ky tu i.password-toggle.fas.fa-eye-slash div.divider-nospace div.mt-3 div.form-group.password-field label
-    for="confirm-password" Go lai mat khau input.form-control#confirm-password type="password" placeholder="It nhat 3 ky tu"
-    i.password-toggle.fas.fa-eye-slash div.divider-nospace div.mt-3 div.form-group label for="full-name" Ho va ten input.form-control#full-name
-    type="text" div.divider-nospace div.mt-3 div.form-group label for="address" Dia chi input.form-control#address type="text" div.divider-nospace
-    div.form-group div.form-check.checkbox-text span style="display: flex" input.form-check-input#agree type="checkbox"
-    label.form-check-label.text-start for="agree" Toi dong y voi cac dieu kien button.register-button type="button" Dang ky div.divider p.text-center
-    Ban da co tai khoan? span a.register-link href="#" Dang nhap
+    div.col-md-6.offset-md-3
+      div.register-form.mx-auto
+        h2.register-header Dang ky
+          div.form-group
+            label for=email Email/Phone
+            input.form-control#email type=text
+          div.divider-nospace
+          div.mt-3
+          div.form-group.password-field
+            label for=password Mat khau
+            input.form-control#password type=password placeholder=it nhat 3 ky tu
+              i.password-toggle.fas.fa-eye-slash
+          div.divider-nospace
+          div.mt-3
+          div.form-group.password-field
+            label for="confirm-password" Go lai mat khau
+            input.form-control#confirm-password type="password" placeholder="It nhat 3 ky tu"
+              i.password-toggle.fas.fa-eye-slash
+          div.divider-nospace
+          div.mt-3
+          div.form-group
+            label for="full-name" Ho va ten
+            input.form-control#full-name type="text"
+          div.divider-nospace
+          div.mt-3
+          div.form-group
+            label for="address" Dia chi
+            input.form-control#address type="text"
+          div.divider-nospace
+          div.form-group
+            div.form-check.checkbox-text
+              span style="display: flex"
+              input.form-check-input#agree type="checkbox"
+              label.form-check-label.text-start for="agree" Toi dong y voi cac dieu kien
+              button.register-button type="button" Dang ky
+          div.divider
+          p.text-center Ban da co tai khoan?
+          span a.register-link href="#" Dang nhap
   </div>
 </div>
 <app-footer></app-footer>
