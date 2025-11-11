@@ -34,19 +34,37 @@ ng generate component detail-product;
               div.carousel-item
                 div.square-image
                   img.product-image src="link image" alt="product-image"
-      button.carousel-control-prev type="button" data-bs-target="#carouselExample" data-bs-slide="prev" span.carousel-control-prev-icon
-      aria-hidden="true" span.visually-hidden Previous button.carousel-control-next type="button" data-bs-target="#carouselExample"
-      data-bs-slide="next" span.carousel-control-next-icon aria-hidden="true" span.visually-hidden next
-      <div class="row">
-        div.thumbnail-container div.thumbnail-item.active image.thumbnail-image src="link image" alt="Thumbnail Image" div.thumbnail-item
-        image.thumbnail-image src="link image" alt="Thumbnail Image" div.thumbnail-item image.thumbnail-image src="link image" alt="Thumbnail Image"
-        div.thumbnail-item image.thumbnail-image src="link image" alt="Thumbnail Image" div.thumbnail-item image.thumbnail-image src="link image"
-        alt="Thumbnail Image"
+      button.carousel-control-prev type="button" data-bs-target="#carouselExample" data-bs-slide="prev"
+        span.carousel-control-prev-icon aria-hidden="true"
+        span.visually-hidden Previous
+      button.carousel-control-next type="button" data-bs-target="#carouselExample" data-bs-slide="next"
+        span.carousel-control-next-icon aria-hidden="true"
+        span.visually-hidden next
+  <div class="row">
+        div.thumbnail-container
+          div.thumbnail-item.active image.thumbnail-image src="link image" alt="Thumbnail Image"
+            div.thumbnail-item
+              image.thumbnail-image src="link image" alt="Thumbnail Image"
+            div.thumbnail-item
+              image.thumbnail-image src="link image" alt="Thumbnail Image"
+            div.thumbnail-item
+              image.thumbnail-image src="link image" alt="Thumbnail Image"
+            div.thumbnail-item
+              image.thumbnail-image src="link image" alt="Thumbnail Image"
       </div>
     </div>
     <div class="col-md-6">
-      div.product-details h2 Thong tin chi tiet san pham p Mo ta san pham p Gia: $99 div.product-actions button.btn.btn-primary Them vao gio hang
-      button.btn.btn-success Mua ngay div.product-quantity div.border-wrapper button - input type="text" value="1" button +
+      div.product-details
+        h2 Thong tin chi tiet san pham
+        p Mo ta san pham
+        p Gia: $99
+          div.product-actions
+            button.btn.btn-primary Them vao gio hang
+            button.btn.btn-success Mua ngay
+          div.product-quantity
+            div.border-wrapper
+              button - input type="text" value="1"
+              button +
     </div>
   </div>
 </div>
