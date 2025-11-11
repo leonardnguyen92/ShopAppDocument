@@ -17,10 +17,23 @@ ng generate component detail-product;
   </div>
   <div class="row">
     <div class="col-md-6">
-      div.carousel.slide#carouselExample data-bs-ride="carousel div.carousel-inner div.carousel-item.active div.square-image img.product-image
-      src="link image" alt="product-image" div.carousel-item div.square-image img.product-image src="link image" alt="product-image"
-      div.carousel-item. div.square-image img.product-image src="link image" alt="product-image" div.carousel-item div.square-image img.product-image
-      src="link image" alt="product-image" div.carousel-item div.square-image img.product-image src="link image" alt="product-image"
+      div.carousel.slide#carouselExample data-bs-ride="carousel
+        div.carousel-inner
+          div.carousel-item.active
+            div.square-image
+              img.product-image src="link image" alt="product-image"
+              div.carousel-item
+              div.square-image
+                img.product-image src="link image" alt="product-image"
+              div.carousel-item
+                div.square-image
+                  img.product-image src="link image" alt="product-image"
+              div.carousel-item
+                div.square-image
+                  img.product-image src="link image" alt="product-image"
+              div.carousel-item
+                div.square-image
+                  img.product-image src="link image" alt="product-image"
       button.carousel-control-prev type="button" data-bs-target="#carouselExample" data-bs-slide="prev" span.carousel-control-prev-icon
       aria-hidden="true" span.visually-hidden Previous button.carousel-control-next type="button" data-bs-target="#carouselExample"
       data-bs-slide="next" span.carousel-control-next-icon aria-hidden="true" span.visually-hidden next
