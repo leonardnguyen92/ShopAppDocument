@@ -1,6 +1,6 @@
 ## 1. Setup Angular Project with Bootstrap 5 and Font Awesome
 
-### 1.1 Install NodeJS(22.20.0LTS), npm, yarn
+### 1.1 Install NodeJS(20 LTS), npm, yarn
 
 - System update
 
@@ -14,10 +14,10 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y curl
 ```
 
-- Add repo Node.js 22.x (LTS)
+- Add repo Node.js 20.x (LTS)
 
 ```sql
-curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 ```
 
 - Install Node.js with npm
@@ -40,6 +40,9 @@ sudo corepack prepare yarn@stable --activate
 
 ```sql
 - npm install -g @angular/cli@(15.2.2)
+/*
+- npm install -g @angular/cli@lastet
+*/
 - mkdir /* project-folder */ && cd /* project-folder */
 - ng new /* app's-name */
 - run project: "yarn start" or "npm start"
@@ -65,7 +68,7 @@ npm i bootstrap@5.3.0
 - Install Fontawesome:
 
 ```html
-npm i @fortawesome/fontawesome-fre
+npm i @fortawesome/fontawesome-free
 ```
 
 - angular.json => search: "styles" => add:

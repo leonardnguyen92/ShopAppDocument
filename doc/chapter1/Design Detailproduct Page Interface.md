@@ -9,66 +9,130 @@ ng generate component detail-product;
 ## detail-product.component.html:
 
 ```html
-<app-header></app-header>
 <div class="container">
   <div class="intro-section">
-    <h1>This is Detail Product Page</h1>
-    <p>Su dung Bootstrap</p>
+    <h1>Đây là trang chi tiết sản phẩm</h1>
+    <p>Sử dụng Bootstrap</p>
   </div>
   <div class="row">
     <div class="col-md-6">
-      div.carousel.slide#carouselExample data-bs-ride="carousel
-        div.carousel-inner
-          div.carousel-item.active
-            div.square-image
-              img.product-image src="link image" alt="product-image"
-              div.carousel-item
-              div.square-image
-                img.product-image src="link image" alt="product-image"
-              div.carousel-item
-                div.square-image
-                  img.product-image src="link image" alt="product-image"
-              div.carousel-item
-                div.square-image
-                  img.product-image src="link image" alt="product-image"
-              div.carousel-item
-                div.square-image
-                  img.product-image src="link image" alt="product-image"
-      button.carousel-control-prev type="button" data-bs-target="#carouselExample" data-bs-slide="prev"
-        span.carousel-control-prev-icon aria-hidden="true"
-        span.visually-hidden Previous
-      button.carousel-control-next type="button" data-bs-target="#carouselExample" data-bs-slide="next"
-        span.carousel-control-next-icon aria-hidden="true"
-        span.visually-hidden next
-  <div class="row">
-        div.thumbnail-container
-          div.thumbnail-item.active image.thumbnail-image src="link image" alt="Thumbnail Image"
-            div.thumbnail-item
-              image.thumbnail-image src="link image" alt="Thumbnail Image"
-            div.thumbnail-item
-              image.thumbnail-image src="link image" alt="Thumbnail Image"
-            div.thumbnail-item
-              image.thumbnail-image src="link image" alt="Thumbnail Image"
-            div.thumbnail-item
-              image.thumbnail-image src="link image" alt="Thumbnail Image"
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="square-image">
+              <img
+                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
+                class="product-image"
+                alt="Product Image"
+              />
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="square-image">
+              <img
+                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
+                class="product-image"
+                alt="Product Image"
+              />
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="square-image">
+              <img
+                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
+                class="product-image"
+                alt="Product Image"
+              />
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="square-image">
+              <img
+                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
+                class="product-image"
+                alt="Product Image"
+              />
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="square-image">
+              <img
+                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
+                class="product-image"
+                alt="Product Image"
+              />
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="row">
+        <div class="thumbnail-container">
+          <div class="thumbnail-item active">
+            <img
+              src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              class="thumbnail-image"
+              alt="Thumbnail Image"
+            />
+          </div>
+          <div class="thumbnail-item">
+            <img
+              src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              class="thumbnail-image"
+              alt="Thumbnail Image"
+            />
+          </div>
+          <div class="thumbnail-item">
+            <img
+              src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              class="thumbnail-image"
+              alt="Thumbnail Image"
+            />
+          </div>
+          <div class="thumbnail-item">
+            <img
+              src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              class="thumbnail-image"
+              alt="Thumbnail Image"
+            />
+          </div>
+          <div class="thumbnail-item">
+            <img
+              src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              class="thumbnail-image"
+              alt="Thumbnail Image"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-md-6">
-      div.product-details
-        h2 Thong tin chi tiet san pham
-        p Mo ta san pham
-        p Gia: $99
-          div.product-actions
-            button.btn.btn-primary Them vao gio hang
-            button.btn.btn-success Mua ngay
-          div.product-quantity
-            div.border-wrapper
-              button - input type="text" value="1"
-              button +
+      <div class="product-details">
+        <h2>Thông tin chi tiết sản phẩm</h2>
+        <p>Mô tả sản phẩm</p>
+        <p>Giá: $99</p>
+        <div class="product-actions">
+          <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+          <button class="btn btn-success">Mua ngay</button>
+        </div>
+        <div class="product-quantity">
+          <div class="border-wrapper">
+            <button>-</button>
+            <input type="text" value="1" />
+            <button>+</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<app-footer></app-footer>
 ```
 
 ## detail-product.component.scss:

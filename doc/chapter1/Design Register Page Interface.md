@@ -9,50 +9,59 @@ ng generate component register
 ## register.component.html:
 
 ```html
-<!-- <app-header></app-header> -->
 <div class="container">
   <div class="row">
-    div.col-md-6.offset-md-3
-      div.register-form.mx-auto
-        h2.register-header Dang ky
-          div.form-group
-            label for=email Email/Phone
-            input.form-control#email type=text
-          div.divider-nospace
-          div.mt-3
-          div.form-group.password-field
-            label for=password Mat khau
-            input.form-control#password type=password placeholder=it nhat 3 ky tu
-              i.password-toggle.fas.fa-eye-slash
-          div.divider-nospace
-          div.mt-3
-          div.form-group.password-field
-            label for="confirm-password" Go lai mat khau
-            input.form-control#confirm-password type="password" placeholder="It nhat 3 ky tu"
-              i.password-toggle.fas.fa-eye-slash
-          div.divider-nospace
-          div.mt-3
-          div.form-group
-            label for="full-name" Ho va ten
-            input.form-control#full-name type="text"
-          div.divider-nospace
-          div.mt-3
-          div.form-group
-            label for="address" Dia chi
-            input.form-control#address type="text"
-          div.divider-nospace
-          div.form-group
-            div.form-check.checkbox-text
-              span style="display: flex"
-              input.form-check-input#agree type="checkbox"
-              label.form-check-label.text-start for="agree" Toi dong y voi cac dieu kien
-              button.register-button type="button" Dang ky
-          div.divider
-          p.text-center Ban da co tai khoan?
-          span a.register-link href="#" Dang nhap
+    <div class="col-md-6 offset-md-3">
+      <div class="register-form mx-auto">
+        <h2 class="register-header">Đăng ký</h2>
+        <div class="form-group">
+          <label for="email">Email/Phone</label>
+          <input type="text" class="form-control" id="email" />
+          <div class="divider-nospace"></div>
+        </div>
+        <div class="mt-3"></div>
+        <div class="form-group password-field">
+          <label for="password">Mật khẩu</label>
+          <input type="password" placeholder="Ít nhất 3 ký tự" class="form-control" id="password" />
+          <i class="password-toggle fas fa-eye-slash"></i>
+          <div class="divider-nospace"></div>
+        </div>
+        <div class="mt-3"></div>
+        <div class="form-group password-field">
+          <label for="confirm-password">Gõ lại mật khẩu</label>
+          <input type="password" placeholder="Ít nhất 3 ký tự" class="form-control" id="confirm-password" />
+          <i class="password-toggle fas fa-eye-slash"></i>
+          <div class="divider-nospace"></div>
+        </div>
+        <div class="mt-3"></div>
+        <div class="form-group">
+          <label for="full-name">Họ và tên</label>
+          <input type="text" class="form-control" id="full-name" />
+          <div class="divider-nospace"></div>
+        </div>
+        <div class="mt-3"></div>
+        <div class="form-group">
+          <label for="address">Địa chỉ</label>
+          <input type="text" class="form-control" id="address" />
+          <div class="divider-nospace"></div>
+        </div>
+        <div class="form-group">
+          <div class="form-check checkbox-text">
+            <span style="display: flex;">
+              <input type="checkbox" class="form-check-input" id="agree" />
+              <label class="form-check-label text-start" for="agree"> Tôi đồng ý với các điều khoản và điều kiện</label>
+            </span>
+          </div>
+        </div>
+        <button type="button" class="register-button">Đăng ký</button>
+        <div class="divider"></div>
+        <p class="text-center">
+          Bạn đã có tài khoản? <span> <a href="#" class="register-link">Đăng nhập</a></span>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
-<app-footer></app-footer>
 ```
 
 ## register.component.scss:

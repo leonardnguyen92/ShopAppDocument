@@ -9,53 +9,74 @@ ng generate component order-confirm
 ## order-confirm.component.html:
 
 ```html
-<app-header></app-header>
 <div class="container">
-   	<div class="confirmation-container">
-   		<h1>Xac nhan don hang</h1>
-   		<p>Cam on ban da dat hang! Duoi day la thong tin ve don hang cua ban</p>
-   	</div>
-   	<div class="row">
-   		<table>
-   			<thead>
-   				<tr>
-   					<th scope="col" class="text-start">San pham</th>
-   					<th scope="col">So luong</th>
-   					<th scope="col">Don gia</th>
-   					<th scope="col">Tong gia</th>
-   				</tr>
-   			</thead>
-   			<tbody>
-   				<tr>
-   					<td>
-   						<div class="product-info">
-   							<img src="link anh san pham" alt="Product Image" class="product-image">
-   							<span class="product-name">Ten san pham
-   						</div>
-   					</td>
-   					<td>2</td>
-   					<td>100,000 d</td>
-   					<td>200,000 d</td>
-   				</tr>
-   				<tr>
-   					<td>
-   						<div class="product-info">
-   							<img src="link anh san pham" alt="Product Image" class="product-image">
-   							<span class="product-name">Ten san pham
-   						</div>
-   					</td>
-   					<td>1</td>
-   					<td>150,000 d</td>
-   					<td>250,000 d</td>
-   				</tr>
-   			</tbody>
-   		</table>
-   		<div class="text-center mt-3">
-   			<button class="btn btn-gradient" type="button">Tiep tuc mua sam</button>
-   		</div>
-   	</div>
+  <div class="confirmation-container">
+    <h1>Xác nhận đơn hàng</h1>
+    <p>Cảm ơn bạn đã đặt hàng! Dưới đây là thông tin chi tiết về đơn hàng của bạn</p>
+  </div>
+  <div class="row">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col" class="text-start">Sản phẩm</th>
+          <th scope="col">Số lượng</th>
+          <th scope="col">Đơn giá</th>
+          <th scope="col">Tổng giá</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="product-info">
+              <img
+                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Product Image"
+                class="product-image"
+              />
+              <span class="product-name">iphone 13</span>
+            </div>
+          </td>
+          <td>2</td>
+          <td>100,000 đ</td>
+          <td>200,000 đ</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-info">
+              <img
+                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Product Image"
+                class="product-image"
+              />
+              <span class="product-name">Macbook pro M2 2023</span>
+            </div>
+          </td>
+          <td>2</td>
+          <td>100,000 đ</td>
+          <td>200,000 đ</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-info">
+              <img
+                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Product Image"
+                class="product-image"
+              />
+              <span class="product-name">Apple Vision Pro 2023</span>
+            </div>
+          </td>
+          <td>2</td>
+          <td>100,000 đ</td>
+          <td>200,000 đ</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center mt-3">
+      <button class="btn btn-gradient" type="button">Tiếp tục mua sắm</button>
+    </div>
+  </div>
 </div>
-<app-footer></app-footer>
 ```
 
 ## order-confirm.component.scss:
