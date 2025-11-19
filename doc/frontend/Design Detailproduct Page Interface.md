@@ -29,38 +29,22 @@ ng generate component detail-product;
           </div>
           <div class="carousel-item">
             <div class="square-image">
-              <img
-                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
-                class="product-image"
-                alt="Product Image"
-              />
+              <img src="https://images.pexels.com/photos/459653/pexels-photo-459653.jpeg" class="product-image" alt="Product Image" />
             </div>
           </div>
           <div class="carousel-item">
             <div class="square-image">
-              <img
-                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
-                class="product-image"
-                alt="Product Image"
-              />
+              <img src="https://images.pexels.com/photos/18105/pexels-photo.jpg" class="product-image" alt="Product Image" />
             </div>
           </div>
           <div class="carousel-item">
             <div class="square-image">
-              <img
-                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
-                class="product-image"
-                alt="Product Image"
-              />
+              <img src="https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg" class="product-image" alt="Product Image" />
             </div>
           </div>
           <div class="carousel-item">
             <div class="square-image">
-              <img
-                src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=1260&dpr=2"
-                class="product-image"
-                alt="Product Image"
-              />
+              <img src="https://images.pexels.com/photos/7974/pexels-photo.jpg" class="product-image" alt="Product Image" />
             </div>
           </div>
         </div>
@@ -76,11 +60,7 @@ ng generate component detail-product;
       <div class="row">
         <div class="thumbnail-container">
           <div class="thumbnail-item active">
-            <img
-              src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="thumbnail-image"
-              alt="Thumbnail Image"
-            />
+            <img src="https://images.pexels.com/photos/459653/pexels-photo-459653.jpeg" class="thumbnail-image" alt="Thumbnail Image" />
           </div>
           <div class="thumbnail-item">
             <img
@@ -90,25 +70,13 @@ ng generate component detail-product;
             />
           </div>
           <div class="thumbnail-item">
-            <img
-              src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="thumbnail-image"
-              alt="Thumbnail Image"
-            />
+            <img src="https://images.pexels.com/photos/18105/pexels-photo.jpg" class="thumbnail-image" alt="Thumbnail Image" />
           </div>
           <div class="thumbnail-item">
-            <img
-              src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="thumbnail-image"
-              alt="Thumbnail Image"
-            />
+            <img src="https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg" class="thumbnail-image" alt="Thumbnail Image" />
           </div>
           <div class="thumbnail-item">
-            <img
-              src="https://images.pexels.com/photos/389819/pexels-photo-389819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="thumbnail-image"
-              alt="Thumbnail Image"
-            />
+            <img src="https://images.pexels.com/photos/7974/pexels-photo.jpg" class="thumbnail-image" alt="Thumbnail Image" />
           </div>
         </div>
       </div>
@@ -124,9 +92,9 @@ ng generate component detail-product;
         </div>
         <div class="product-quantity">
           <div class="border-wrapper">
-            <button>-</button>
+            <button type="button" aria-label="Giảm số lượng">-</button>
             <input type="text" value="1" />
-            <button>+</button>
+            <button type="button" aria-label="Tăng số lượng">+</button>
           </div>
         </div>
       </div>
@@ -139,85 +107,93 @@ ng generate component detail-product;
 
 ```css
 .intro-section {
-   color: white;
-   padding: 20px;
-   text-align: center;
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
 
 .product-image {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .thumbnail-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .thumbnail-item {
-    width: 120px;
-    height: 120px;
-    margin-right: 5px; /_ Them khoang cach ngang giua cac anh _/
+  width: 120px;
+  height: 120px;
+  margin-right: 5px; /* Them khoang cach ngang giua cac anh */
 }
 
 .thumbnail-item:last-child {
-    margin-right: 0; /_ Xoa khoang cach ngang o anh cuoi cung _/
+  margin-right: 0; /* Xoa khoang cach ngang o anh cuoi cung */
 }
 
-.thumbnail-item image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.thumbnail-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .thumbnail-item.active {
-    border: 2px solid white;
+  border: 2px solid white;
 }
 
 .product-details {
-    color: white;
-    padding: 20px;
+  color: white;
+  padding: 20px;
 }
 
 .product-actions {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
 }
 
 .product-actions button {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .product-quantity {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
 }
 
 .product-quantity button {
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .product-quantity input {
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 16px;
-    text-align: center;
-    width: 40px;
-    margin: 0 10px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  width: 40px;
+  margin: 0 10px;
 }
 
 product-quantity input:focus {
-    outline: none;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .thumbnail-item {
+    width: 60px;
+    height: 60px;
+    margin-right: 3px;
+  }
 }
 ```

@@ -2,7 +2,7 @@
 
 ## 1. Framework
 
-### Angular user version 15.2.2
+### Angular user version 15.2.2 (update version @lastest)
 
 ### Java SpringBoot API
 

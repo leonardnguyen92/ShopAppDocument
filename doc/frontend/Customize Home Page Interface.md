@@ -41,19 +41,20 @@ ng generate component home
 ```html
 <div class="container">
   <div class="intro-section">
-    <h1>Đây là trang Home</h1>
-    <p>Trang này hiển thị danh sách các sản phẩm, kèm ảnh</p>
-    <p>Các bạn có thể chọn xem sản phẩm và mua hàng tại đây</p>
+    <h1>Đây là trang home</h1>
+    <p>Trang hiển thị danh sách các sản phẩm, kèm ảnh.</p>
+    <p>Các bạn có thể chọn xem sản phẩm và mua hàng tại đây.</p>
   </div>
-  <!--Đoạn này có 1 ô searchbox bên trái, 1 combobox bên phải  -->
+  <!--Đoạn này có 1 ô search box bên trái và 1 combo box bên phải -->
   <div class="search-box">
     <input type="text" class="form-control search-input" placeholder="Tìm sản phẩm" />
-    <select class="form-control product-category">
+    <select name="" id="" class="form-control product-category">
       <option selected disabled>Danh mục sản phẩm</option>
       <option>Đồ điện tử</option>
-      <option>Hải sản</option>
+      <option>Đồ gia dụng</option>
       <option>Bánh kẹo</option>
     </select>
+    <button class="btn btn-primary ml-2">Tìm kiếm</button>
   </div>
   <div class="row">
     <div class="col-lg-4 col-md-6">
@@ -64,20 +65,20 @@ ng generate component home
           class="product-image"
         />
         <h3 class="product-name">Product 1</h3>
-        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p class="product-description">Tiện ích trong nhà bếp, thiết kế nhỏ gọn, dễ sử dụng.</p>
         <p class="product-warranty">Bảo hành: 12 tháng</p>
         <p class="product-price">Giá: <del>$200</del> $100</p>
         <div class="product-rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
         </div>
         <div class="product-actions">
-          <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+          <button type="button" class="btn btn-primary">Thêm vào giỏ hàng</button>
           <span class="space-x"></span>
-          <button class="btn btn-success">Mua ngay</button>
+          <button type="button" class="btn btn-success">Mua ngay</button>
         </div>
       </div>
     </div>
@@ -89,20 +90,20 @@ ng generate component home
           class="product-image"
         />
         <h3 class="product-name">Product 1</h3>
-        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p class="product-description">Tiện ích trong nhà bếp, thiết kế nhỏ gọn, dễ sử dụng.</p>
         <p class="product-warranty">Bảo hành: 12 tháng</p>
         <p class="product-price">Giá: <del>$200</del> $100</p>
         <div class="product-rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
         </div>
         <div class="product-actions">
-          <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+          <button type="button" class="btn btn-primary">Thêm vào giỏ hàng</button>
           <span class="space-x"></span>
-          <button class="btn btn-success">Mua ngay</button>
+          <button type="button" class="btn btn-success">Mua ngay</button>
         </div>
       </div>
     </div>
@@ -114,20 +115,20 @@ ng generate component home
           class="product-image"
         />
         <h3 class="product-name">Product 1</h3>
-        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p class="product-description">Tiện ích trong nhà bếp, thiết kế nhỏ gọn, dễ sử dụng.</p>
         <p class="product-warranty">Bảo hành: 12 tháng</p>
         <p class="product-price">Giá: <del>$200</del> $100</p>
         <div class="product-rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
         </div>
         <div class="product-actions">
-          <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+          <button type="button" class="btn btn-primary">Thêm vào giỏ hàng</button>
           <span class="space-x"></span>
-          <button class="btn btn-success">Mua ngay</button>
+          <button type="button" class="btn btn-success">Mua ngay</button>
         </div>
       </div>
     </div>
@@ -139,20 +140,20 @@ ng generate component home
           class="product-image"
         />
         <h3 class="product-name">Product 1</h3>
-        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p class="product-description">Tiện ích trong nhà bếp, thiết kế nhỏ gọn, dễ sử dụng.</p>
         <p class="product-warranty">Bảo hành: 12 tháng</p>
         <p class="product-price">Giá: <del>$200</del> $100</p>
         <div class="product-rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
         </div>
         <div class="product-actions">
-          <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+          <button type="button" class="btn btn-primary">Thêm vào giỏ hàng</button>
           <span class="space-x"></span>
-          <button class="btn btn-success">Mua ngay</button>
+          <button type="button" class="btn btn-success">Mua ngay</button>
         </div>
       </div>
     </div>
@@ -164,24 +165,48 @@ ng generate component home
           class="product-image"
         />
         <h3 class="product-name">Product 1</h3>
-        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p class="product-description">Tiện ích trong nhà bếp, thiết kế nhỏ gọn, dễ sử dụng.</p>
         <p class="product-warranty">Bảo hành: 12 tháng</p>
         <p class="product-price">Giá: <del>$200</del> $100</p>
         <div class="product-rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-alt"></i>
         </div>
         <div class="product-actions">
-          <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+          <button type="button" class="btn btn-primary">Thêm vào giỏ hàng</button>
           <span class="space-x"></span>
-          <button class="btn btn-success">Mua ngay</button>
+          <button type="button" class="btn btn-success">Mua ngay</button>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="#">First</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#">Previous</a>
+      </li>
+      <ng-container>
+        <li class="page-item">
+          <a class="page-link" href="#"></a>
+        </li>
+      </ng-container>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#">Last</a>
+      </li>
+    </ul>
+  </nav>
 </div>
 ```
 
@@ -219,19 +244,17 @@ ng generate component home
 }
 
 .form-control::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  //_ Chrome, Firefox, Opera, Safari 10.1+ _/
   color: rgba(255, 255, 255, 0.5);
-  opacity: 1;
-  /* Firefox */
+  opacity: 1; //_ Firefox_?/
 }
 
 .form-control:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
+  //_ Interner Explorer 10-11 _/
   color: rgba(255, 255, 255, 0.5);
 }
 
 .form-control::-ms-input-placeholder {
-  /* Microsoft Edge */
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -278,6 +301,16 @@ ng generate component home
 
 .space-x {
   margin: 0 5px;
-  /*margin-top, margin-right, margin-bottom, margin-left*/
+}
+
+@media (max-width: 768px) {
+  .search-box {
+    flex-direction: column;
+  }
+  .search-input,
+  .product-category {
+    width: 100%;
+    margin: 5px 0;
+  }
 }
 ```
