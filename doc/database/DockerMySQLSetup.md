@@ -20,7 +20,7 @@ mkdir -p ~/mysql-data
 sudo docker run -d \
   --name mysql8 \
   -e MYSQL_ROOT_PASSWORD=123456 \
-  -e MYSQL_DATABASE=mydb \
+  -e MYSQL_DATABASE=shopapp \
   -p 3306:3306 \
   -v ~/mysql-data:/var/lib/mysql \
   mysql:8.0.33
