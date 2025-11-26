@@ -106,6 +106,20 @@ CREATE TABLE products(
 
 ---
 
+# Product Images Table
+
+```sql
+CREATE TABLE product_images(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    product_id INT,
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    CONSTRAINT fk_product_images_produc_id FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+    image_url VARCHAR(300)
+);
+```
+
+---
+
 # Orders Table
 
 ```sql
@@ -118,7 +132,7 @@ CREATE TABLE orders(
     address NVARCHAR(200) NOT NULL,
     note NVARCHAR(255) DEFAULT '',
     order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('pending','processing','shipped','delivered','cancelled') COMMENT 'Trạng thái đơn hàng',
+    status ENUM('pending','processing','shipped','delivered','cancelled') DEFAULT 'pending' COMMENT 'Trạng thái đơn hàng',
     shipping_method NVARCHAR(100),
     shipping_address NVARCHAR(255) DEFAULT '',
     shipping_date DATE,
