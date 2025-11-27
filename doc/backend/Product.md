@@ -1,32 +1,8 @@
-# DTO - DATA TRANSFER OBJECT AND PRODUCT MODEL
-
-## Data Transfer Object
-
-- A DTO is a simple object used to transfer data between different layers of an application (Controller → Service → Repository) or between backend and frontend.
-  => It contains ONLY data — no business logic.
-
-<ol>Typical uses:
-    <li>To hide internal entity structure from the outside world.</li>
-    <li>To validate request inputs.</li>
-    <li>To send structured response objects</li>
-    <li>To avoid exposing database entities directly</li>
-</ol>
-
-- Example:
-
-```java
-public class UserDTO {
-    private Long id;
-    private String name;
-    private String email;
-}
-```
-
----
+# Product
 
 ## Product DTO
 
-- ProductDTO
+- ProductDTO.java
 
 ```java
 @Data
@@ -55,7 +31,46 @@ public class ProductDTO {
 }
 ```
 
-- ProductsController
+---
+
+## Product Model
+
+- Product.java
+
+```java
+@Entity
+@Table(name = "products")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Product extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name", nullable = false, length = 350)
+    private String name;
+
+    @Column(name = "price")
+    private BigDecimal price;
+
+    @Column(name = "thumbnail", length = 300)
+    private String thumbnail;
+
+    @Column(name = "description")
+    private String description;
+
+    @ManyToOne
+    @Column(name = "category_id")
+    private Category category
+}
+```
+
+---
+
+## Product Controller
+
+- ProductsController.java
 
 ```java
 @RestController
@@ -131,20 +146,6 @@ public class ProductsController {
         return ResponseEntity.ok(String.format("Delete Product with id = %d is successfully", id));
     }
 }
-```
-
----
-
-- application.yml
-
-```yml
-server:
-  port: 8088
-spring:
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
 ```
 
 ---
@@ -264,3 +265,5 @@ public class ProductsController {
     }
 }
 ```
+
+---
