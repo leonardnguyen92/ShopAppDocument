@@ -1,11 +1,21 @@
 # Product
 
-## Product DTO
+## TOC
+
+1. [ProductDTO](#dto)
+2. [ProductEntity](#entity)
+3. [ProductController](#controller)
+4. [UpgradeVersion](#upgrade-version-not-test)
+5. [Repository](#repository)
+6. [Service](#service)
+
+## DTO
 
 - ProductDTO.java
 
 ```java
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductDTO {
@@ -31,9 +41,27 @@ public class ProductDTO {
 }
 ```
 
+- ProductImageDTO.java
+
+```java
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductImageDTO {
+    @JsonProperty("product_id")
+    @Min(value = 1, message = "Product's ID must be > 0")
+    private Long productId;
+
+    @Size(min = 5, max = 200, message = "Image's Name")
+    @JsonProperty("image_url")
+    private String imageUrl;
+}
+```
+
 ---
 
-## Product Model
+## Entity
 
 - Product.java
 
@@ -41,6 +69,7 @@ public class ProductDTO {
 @Entity
 @Table(name = "products")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product extends BaseEntity {
@@ -61,21 +90,49 @@ public class Product extends BaseEntity {
     private String description;
 
     @ManyToOne
-    @Column(name = "category_id")
+    @JoinColumn(name = "category_id")
     private Category category
 }
 ```
 
 ---
 
-## Product Controller
+- ProductImage.java
+
+```java
+@Entity
+@Table(name = "product_images")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProductImage {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @Column(name = "image_url", nullable = false, length = 300)
+    private String imageUrl;
+}
+```
+
+---
+
+## Controller
 
 - ProductsController.java
 
 ```java
 @RestController
 @RequestMapping("${api.prefix}/products")
+@RequiredArgsConstructor
 public class ProductsController {
+    private final IProductService productService;
+
     @GetMapping("")
     public ResponseEntity<String> getAllProducts(@RequestParam int page, @RequestParam int limit) {
         return ResponseEntity.ok(String.format("getAllProducts with page = %d and limit = %d", page, limit));
@@ -87,13 +144,14 @@ public class ProductsController {
     }
 
     @PostMapping("", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> insertProduct(@Valid @RequestBody ProductDTO product, /* @RequestPart("file") MultipartFile file ,*/ BindingResult result) {
+    public ResponseEntity<?> insertProduct(@Valid @RequestBody ProductDTO productDTO, BindingResult result) {
         try{
             if(result.hasErrors()) {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            List<MultipartFile> files = product.getFiles();
+            Product newProduct = productService.createProduct(productDTO);
+            List<MultipartFile> files = productDTO.getFiles();
             files = files == null ? new ArrayList<MultipartFile>() : files;
             for(MultipartFile file : files) {
                 if(file.getSize() == 0) {
@@ -110,10 +168,14 @@ public class ProductsController {
                 }
 
                 String filename = storeFile(file);
-                    // Tiến hành lưu vào DB => xử lý sau;
-                    // Lưu vào bảng product_images
+                // Tiến hành lưu vào DB => xử lý sau;
+                productService.createProductImage(newProduct.getId(), ProductImageDTO.builder()
+                    .imageUrl(filename)
+                    .build());
+                // Lưu vào bảng product_images
             }
-            return ResponseEntity.ok(String.format("Insert Product with name = %s is successfully.", product.getName()));
+            productService.createProduct(productDTO);
+            return ResponseEntity.ok(String.format("Insert Product with name = %s is successfully.", productDTO.getName()));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -137,7 +199,7 @@ public class ProductsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateProduct(@PathVariable Long id) {
+    public ResponseEntity<String> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok(String.format("Update Product with id = %d is successfully", id));
     }
 
@@ -150,7 +212,7 @@ public class ProductsController {
 
 ---
 
-# Upgrade Version (not test)
+## Upgrade Version (not test)
 
 - ProductsController
 
@@ -175,6 +237,7 @@ public class ProductsController {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
+            Product newProduct = productService.createProduct(productDTO);
             List<MultipartFile> files = product.getFiles();
             files = files == null ? new ArrayList<MultipartFile>() : files;
             List<String> fileErrors = new ArrayList<>();
@@ -267,3 +330,127 @@ public class ProductsController {
 ```
 
 ---
+
+## Repository
+
+- ProductRepository.java
+
+```java
+public interface ProductRepository extends JpaRepository(Product, Long) {
+    boolean existsByName(String name);
+    Page<Product> findAll(Pageable pageable); // phân trang
+    // List<Product> findByCategoryId(Long categoryId);
+}
+```
+
+- ProductImageRepository.java
+
+```java
+public interface ProductImageRepository extends JpaRepository(ProductImage, Long) {
+    List<ProductImage> findByProductId(Long productId);
+}
+```
+
+---
+
+## Service
+
+- Interface IProductService.java
+
+```java
+public interface IProductService{
+    Product createProduct(ProductDTO productDTO);
+
+    Product getProductById(long id);
+
+    Page<Product> getAllProduct(PageRequest pageRequest);
+
+    Product updateProduct(long id, ProductDTO productDTO);
+
+    void deleteProduct(long id);
+
+    boolean existsByName(String name);
+
+    ProductImage createProductImage(Long productId, ProductImageDTO productImageDTO) throws Exception;
+}
+```
+
+- ProductService.java
+
+```java
+@Service
+@RequiredArgsConstructor
+public class ProductService implements IProductService {
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
+    private final ProductImageRepository productImageRepository;
+
+    @Override
+    public Product createProduct(ProductDTO productDTO) throws DataNotFoundException{
+        Category existsingCategory = categoryRepository.findById(productDTO.getCategoryId())
+                .orElseThrow(() -> new DataNotFoundException("Cannot find category with id: " + productDTO.getCategoryId()));
+        Product newProduct = Product.builder()
+                .name(productDTO.getName())
+                .price(productDTO.getPrice())
+                .thumbnail(productDTO.getThumbnail())
+                .category(existsingCategory)
+                .build();
+        return productRepository.save(newProduct);
+    }
+
+    @Override
+    public Product getProductById(long productId) throws DataNotFoundException{
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new DataNotFoundException("Cannot find product with id = " + productId));
+    }
+
+    @Override
+    public Page<Product> getAllProduct(PageRequest pageRequest){
+        // Lấy danh sách sản phẩm theo trang(page) và giới hạn(limit)
+        return productRepository.findAll(pageRequest);
+    }
+
+    @Override
+    public Product updateProduct(long id, ProductDTO productDTO) throws Exception{
+        Product existsingProduct = getProductById(id);
+        if (existsingProduct != null) {
+            Category existsingCategory = categoryRepository.findById(productDTO.getCategoryId())
+                .orElseThrow(() -> new DataNotFoundException("Cannot find category with id: " + productDTO.getCategoryId()));
+            existsingProduct.setName(productDTO.getName());
+            existsingProduct.setCategory(existsingCategory);
+            existsingProduct.setPrice(productDTO.getPrice());
+            existsingProduct.setThumbnail(productDTO.getThumbnail());
+            existsingProduct.setDescription(productDTP.getDescription());
+            return productRepository.save(existsingProduct);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteProduct(long id){
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        optionalProduct.ifPresent(productRepository::delete);
+    }
+
+    @Override
+    public boolean existsByName(String name){
+        return productRepository.existsByName(name);
+    }
+
+    @Override
+    public ProductImage createProductImage(Long productId, ProductImageDTO productImageDTO) throws Exception{
+        Product existsingProduct = productRepository.findById(productImageDTO.getProductId())
+            .orElseThrow(() -> new DataNotFoundException("Cannot find product with id: " + productImageDTO.getProductId()));
+
+        ProductImage newProductImage = ProductImage.builder().
+            .product(existsingProduct)
+            .imageUrl(productImageDTO.getImageUrl())
+            .build();
+        int size = productImageRepository.findByProductId(productId).size();
+        if (size >= 5) {
+            throw new InvalidParamException("Number of images must be <= 5");
+        }
+        return productImageRepository.save(newProductImage);
+    }
+}
+```

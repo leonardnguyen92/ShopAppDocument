@@ -31,3 +31,47 @@
 - MySQL Driver
 - Validation
   ![Spring Initialize](/images/Spring.JPG)
+
+---
+
+# Project Structure
+
+```
+shopapp
+ ├── src/
+ │    └── main/
+ │         ├── java.com.project.shopapp/
+ │         │      │
+ │         │      ├── components
+ │         │      │
+ │         │      ├── configurations
+ │         │      │
+ │         │      ├── controller
+ │         │      │
+ │         │      ├── dtos
+ │         │      │
+ │         │      ├── exceptions
+ │         │      │
+ │         │      ├── filters
+ │         │      │
+ │         │      ├── models
+ │         │      │
+ │         │      ├── repositories
+ │         │      │
+ │         │      ├── responses
+ │         │      │
+ │         │      ├── services
+ │         │      │
+ │         │      ├── utils
+ │         │      │
+ │         │      └── ShopappApplication.java
+ │         │
+ │         └── resources /
+ │                │
+ │                └── application.yml
+ │
+ ├── uploads
+ └── pom.xml
+```
+
+---

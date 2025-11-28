@@ -20,7 +20,7 @@ CREATE TABLE users(
     password VARCHAR(100) NOT NULL DEFAULT '',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    is_active TINYINT(1) DEFAULT 1,
+    active TINYINT(1) DEFAULT 1,
     date_of_birth DATE,
     facebook_account_id INT DEFAULT 0,
     google_account_id INT DEFAULT 0,
@@ -138,8 +138,9 @@ CREATE TABLE orders(
     shipping_date DATE,
     tracking_number VARCHAR(100),
     payment_method VARCHAR(100),
+    payment_date DATE,
     total_money FLOAT CHECk (total_money >= 0),
-    is_active TINYINT(1) DEFAULT 1,
+    active TINYINT(1) DEFAULT 1,
     FOREIGN KEY (user_id) REFERENCES users(id)
 ) COMMENT 'THÔNG TIN ĐẶT HÀNG';
 ```

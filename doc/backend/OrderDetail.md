@@ -1,4 +1,19 @@
-# OrderDetailController
+# OrderDetail
+
+---
+
+## TOC
+
+1. [OrderDetailController](#controller)
+2. [OrderDetailDTO](#dto)
+3. [OrderDetailEntity](#entity)
+4. [OrderDetailEntity](#repository)
+
+---
+
+## Controller
+
+- OrderDetailController.java
 
 ```java
 @RestController
@@ -44,7 +59,9 @@ public class OrderDetailController {
 
 ---
 
-# OrderDetailDTO
+## DTO
+
+-OrderDetaiDTO.java
 
 ```java
 @Data
@@ -72,6 +89,59 @@ public class OrderDetailDTO {
     private BigDecimal totalMoney;
 
     private String color;
+}
+```
+
+---
+
+## Entity
+
+- OrderDetail.java
+
+```java
+@Entity
+@Table(name = "order_details")
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class OrderDetail {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
+
+    @Column(name = "number_of_product", nullable = false)
+    private int numberOfProduct;
+
+    @Column(name = "total_money", nullable = false)
+    private BigDecimal totalMoney;
+
+    @Column(name = "color")
+    private String color;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+}
+```
+
+---
+
+## Repository
+
+- OrderDetailRepository.java
+
+```java
+public interface OrderDetailRepository extends JpaRepository<OderDetail, Long> {
+    List<OrderDetail> findByOrderId(Long orderId)
 }
 ```
 

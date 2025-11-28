@@ -1,4 +1,20 @@
-# OrderController
+# Order
+
+---
+
+## TOC
+
+1. [OrderCotroller](#cotroller)
+2. [OrderDTO](#dto)
+3. [OrderEntity](#entity)
+4. [OrderStatus](#status)
+5. [OrderRepository](#repository)
+
+---
+
+## Cotroller
+
+- OrderController.java
 
 ```java
 @RestController
@@ -49,7 +65,9 @@ public class OrderController {
 
 ---
 
-# OrderDTO
+## DTO
+
+-OrderDTO.java
 
 ```java
 @Data
@@ -95,18 +113,100 @@ public class OrderDTO {
 
 ---
 
-- application.yml
+## Entity
 
-```yml
-server:
-  port: 8088
-spring:
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
-api:
-  prefix: api/v1
+- Order.java
+
+```java
+@Entity
+@Table(name = "orders")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "fullname", length = 100)
+    private String fullName;
+
+    @Column(name = "email", length = 100)
+    private String email;
+
+    @Column(name = "phone_number", nullable = false, length = 20)
+    private String phoneNumber;
+
+    @Column(name = "address", nullable = false, length = 100)
+    private String address;
+
+    @Column(name = "note", length = 100)
+    private String note;
+
+    @Column(name = "order_date")
+    private LocalDateTime orderDate;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "shipping_method")
+    private String shippingMethod;
+
+    @Column(name = "shipping_address")
+    private String shippingAddress;
+
+    @Column(name = "shipping_date")
+    private Date shippingDate;
+
+    @Column(name = "tracking_number")
+    private String trackingNumber;
+
+    @Column(name = "payment_method")
+    private String paymentMethod;
+
+    @Column(name = "payment_date")
+    private Date paymentDate;
+
+    @Column(name = "total_money")
+    private BigDecimal totalMoney;
+
+    @Column(name = "active")
+    private boolean active;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+}
+```
+
+---
+
+## Oder Status
+
+- OderStatus.java
+
+```java
+public class OrderStatus {
+    public static final String PENDING = "pending";
+    public static final String PROCESSING = "processing";
+    public static final String SHIPPED = "shipped";
+    public static final String DELIVERED = "delivered";
+    public static final String CANCELLED = "cancelled";
+}
+```
+
+---
+
+## Repository
+
+- OrderRepository.java
+
+```java
+public interface OderRepository extends JpaRepository<Order, Long> {
+    List<Order> findByUserId(Long userId);
+}
 ```
 
 ---
