@@ -10,7 +10,7 @@
 @NoArgsConstructor
 @MappedSuperClass
 public class BaseEntity {
-@Column(name = "created_at")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")

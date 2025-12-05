@@ -37,7 +37,6 @@ public class ProductDTO {
 	@JsonProperty("category_id")
 	private Long categoryId;
 
-    private List<MultipartFile> files;
 }
 ```
 
@@ -107,6 +106,9 @@ public class Product extends BaseEntity {
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductImage {
+
+    public static final int MAXIMUM_IMAGES_PER_PRODUCT = 5;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -134,8 +136,13 @@ public class ProductsController {
     private final IProductService productService;
 
     @GetMapping("")
-    public ResponseEntity<String> getAllProducts(@RequestParam int page, @RequestParam int limit) {
-        return ResponseEntity.ok(String.format("getAllProducts with page = %d and limit = %d", page, limit));
+    public ResponseEntity<List<ProductListResponse>> getAllProducts(@RequestParam int page, @RequestParam int limit) {
+        PageRequest pageRequest = PageRequest.of(page, limit, Sort.by("createdAt").descending());
+        Page<ProductResponse> productPage = productService.getAllProducts(pageRequest);
+        int totalPages = productPage.getTotalPages();
+        List<ProductResponse> products = productPage.getContent();
+
+        return ResponseEntity.ok(ProductListResponse.builder().products(products).totalPages(totalPages).build());
     }
 
     @GetMapping("/{id}")
@@ -143,7 +150,8 @@ public class ProductsController {
         return ResponseEntity.ok(String.format("get Product with id = %d successfully", id));
     }
 
-    @PostMapping("", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping("")
+    //POST http://localhost:8088/v1/api/products
     public ResponseEntity<?> insertProduct(@Valid @RequestBody ProductDTO productDTO, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -151,8 +159,23 @@ public class ProductsController {
                 return ResponseEntity.badRequest().body(errorMessages);
             }
             Product newProduct = productService.createProduct(productDTO);
-            List<MultipartFile> files = productDTO.getFiles();
+
+            return ResponseEntity.ok(newProduct);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping(values = "uploads/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    //POST http://localhost:8088/v1/api/products
+    public ResponseEntity<?> uploadImages(@PathVariable("id") Long productId, @ModelAttribute("file") List<MultipartFile> files) {
+        try {
+            Product existsingProduct = productService.getProductById(productId);
             files = files == null ? new ArrayList<MultipartFile>() : files;
+            if(files.size() > 5) {
+                return ResponseEntity.badRequest().body("You can only upload maximum 5 images");
+            }
+            List<ProductImage> productImages = new ArrayList<ProductImage>();
             for(MultipartFile file : files) {
                 if(file.getSize() == 0) {
                     continue;
@@ -169,20 +192,23 @@ public class ProductsController {
 
                 String filename = storeFile(file);
                 // Tiến hành lưu vào DB => xử lý sau;
-                productService.createProductImage(newProduct.getId(), ProductImageDTO.builder()
+                ProductImage productImage = productService.createProductImage(existsingProduct.getId(), ProductImageDTO.builder()
                     .imageUrl(filename)
                     .build());
                 // Lưu vào bảng product_images
+                productImages.add(productImage);
             }
-            productService.createProduct(productDTO);
-            return ResponseEntity.ok(String.format("Insert Product with name = %s is successfully.", productDTO.getName()));
+            return ResponseEntity.ok(productImages);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     private String storeFile(MultipartFile file) throws IOException {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if(!isImageFile(file) || file.getOriginalFilename() == null){
+            throw new IOException("Invalid Image Format");
+        }
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         // Thêm UUID vào trước tên file để đảm bảo tên file là duy nhất
         String uniqueFilename = UUID.randomUUID().toString() + "_" + fileName;
         // Đường dẫn thư mục bạn muốn lưu file
@@ -196,6 +222,11 @@ public class ProductsController {
         // Sao chép file vào thư mục đích
         Files.copy(file.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
         return uniqueFilename;
+    }
+
+    private boolean isImageFile(MultipartFile file) {
+        String contentFile = file.getContentType();
+        return contentFile != null && contentType.startsWith("image/");
     }
 
     @PutMapping("/{id}")
@@ -363,7 +394,7 @@ public interface IProductService{
 
     Product getProductById(long id);
 
-    Page<Product> getAllProduct(PageRequest pageRequest);
+    Page<ProductResponse> getAllProduct(PageRequest pageRequest);
 
     Product updateProduct(long id, ProductDTO productDTO);
 
@@ -405,9 +436,20 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Page<Product> getAllProduct(PageRequest pageRequest){
+    public Page<ProductResponse> getAllProduct(PageRequest pageRequest){
         // Lấy danh sách sản phẩm theo trang(page) và giới hạn(limit)
-        return productRepository.findAll(pageRequest);
+        return productRepository.findAll(pageRequest).map(product -> {
+            ProductResponse productResponse = ProductResponse.builder()
+            .name(product.getName())
+            .price(product.getPrice())
+            .thumbnail(product.getThumbnail())
+            .description(product.getDescription())
+            .categoryId(product.getCategory().getId())
+            .build()
+            productResponse.setCreatedAt(product.getCreatedAt());
+            productResponse.setUpdatedAt(product.getUpdateAt());
+            return productResponse;
+        });
     }
 
     @Override
@@ -439,7 +481,7 @@ public class ProductService implements IProductService {
 
     @Override
     public ProductImage createProductImage(Long productId, ProductImageDTO productImageDTO) throws Exception{
-        Product existsingProduct = productRepository.findById(productImageDTO.getProductId())
+        Product existsingProduct = productRepository.findById(productId)
             .orElseThrow(() -> new DataNotFoundException("Cannot find product with id: " + productImageDTO.getProductId()));
 
         ProductImage newProductImage = ProductImage.builder().
@@ -453,4 +495,16 @@ public class ProductService implements IProductService {
         return productImageRepository.save(newProductImage);
     }
 }
+```
+
+---
+
+pom.xml
+
+```xml
+<dependency>
+    <groupId>javax.activation</groupId>
+    <artifactId>javax.activation-api</artifactId>
+    <version>1.2.0</version>
+</dependency>
 ```
