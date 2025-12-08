@@ -2,61 +2,13 @@
 
 ## TOC
 
-1. [ProductDTO](#dto)
-2. [ProductEntity](#entity)
-3. [ProductController](#controller)
-4. [UpgradeVersion](#upgrade-version-not-test)
-5. [Repository](#repository)
-6. [Service](#service)
-
-## DTO
-
-- ProductDTO.java
-
-```java
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class ProductDTO {
-
-    @NotBlank(message = "Title is required")
-    @Size(min = 3, max = 200, message = "Title must be between 3 and 200 characters")
-    private String name;
-
-    @Min(value = 0, message = "Price must be greater than or equal to 0")
-    @Max(value = 10000000, message = "Price must be less than or equal to 10,000,000")
-    private Float price;
-
-    private String thumbnail;
-
-    @NotEmpty(message = "Description cannot be empty")
-	private String description;
-
-	@NotBlank(message = "Category Id is required")
-	@JsonProperty("category_id")
-	private Long categoryId;
-
-}
-```
-
-- ProductImageDTO.java
-
-```java
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class ProductImageDTO {
-    @JsonProperty("product_id")
-    @Min(value = 1, message = "Product's ID must be > 0")
-    private Long productId;
-
-    @Size(min = 5, max = 200, message = "Image's Name")
-    @JsonProperty("image_url")
-    private String imageUrl;
-}
-```
+1. [ProductEntity](#entity)
+2. [ProductDTO](#dto)
+3. [ProductResponse](#response)
+4. [Repository](#repository)
+5. [Service](#service)
+6. [ProductController](#controller)
+7. [UpgradeVersion](#upgrade-version-not-test)
 
 ---
 
@@ -124,6 +76,233 @@ public class ProductImage {
 
 ---
 
+## DTO
+
+- ProductDTO.java
+
+```java
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductDTO {
+
+    @NotBlank(message = "Title is required")
+    @Size(min = 3, max = 200, message = "Title must be between 3 and 200 characters")
+    private String name;
+
+    @Min(value = 0, message = "Price must be greater than or equal to 0")
+    @Max(value = 10000000, message = "Price must be less than or equal to 10,000,000")
+    private Float price;
+
+    private String thumbnail;
+
+    @NotEmpty(message = "Description cannot be empty")
+	private String description;
+
+	@NotBlank(message = "Category Id is required")
+	@JsonProperty("category_id")
+	private Long categoryId;
+
+}
+```
+
+- ProductImageDTO.java
+
+```java
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductImageDTO {
+    @JsonProperty("product_id")
+    @Min(value = 1, message = "Product's ID must be > 0")
+    private Long productId;
+
+    @Size(min = 5, max = 200, message = "Image's Name")
+    @JsonProperty("image_url")
+    private String imageUrl;
+}
+```
+
+---
+
+## Response
+
+- ProductResponse.java
+
+```java
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductResponse extends BaseResponse {
+    private String name;
+    private Float price;
+    private String thumbnail;
+	private String description;
+
+	@JsonProperty("category_id")
+	private Long categoryId;
+
+    public static ProductResponse fromProduct(Product){
+        ProductResponse productResponse = ProductResponse.builder()
+            .name(product.getName())
+            .price(product.getPrice())
+            .thumbnail(product.getThumbnail())
+            .description(product.getDescription())
+            .categoryId(product.getCategory().getId())
+            .build()
+            productResponse.setCreatedAt(product.getCreatedAt());
+            productResponse.setUpdatedAt(product.getUpdateAt());
+            return productResponse;
+    }
+}
+```
+
+---
+
+- ProductListResponse.java
+
+```java
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductListResponse {
+    private List<ProductResponse> products;
+    private int totalPages;
+}
+```
+
+---
+
+## Repository
+
+- ProductRepository.java
+
+```java
+public interface ProductRepository extends JpaRepository(Product, Long) {
+    boolean existsByName(String name);
+    Page<Product> findAll(Pageable pageable); // phân trang
+    // List<Product> findByCategoryId(Long categoryId);
+}
+```
+
+- ProductImageRepository.java
+
+```java
+public interface ProductImageRepository extends JpaRepository(ProductImage, Long) {
+    List<ProductImage> findByProductId(Long productId);
+}
+```
+
+---
+
+## Service
+
+- Interface IProductService.java
+
+```java
+public interface IProductService{
+    Product createProduct(ProductDTO productDTO);
+
+    Product getProductById(long id);
+
+    Page<ProductResponse> getAllProduct(PageRequest pageRequest);
+
+    Product updateProduct(long id, ProductDTO productDTO);
+
+    void deleteProduct(long id);
+
+    boolean existsByName(String name);
+
+    ProductImage createProductImage(Long productId, ProductImageDTO productImageDTO) throws Exception;
+}
+```
+
+- ProductService.java
+
+```java
+@Service
+@RequiredArgsConstructor
+public class ProductService implements IProductService {
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
+    private final ProductImageRepository productImageRepository;
+
+    @Override
+    public Product createProduct(ProductDTO productDTO) throws DataNotFoundException{
+        Category existsingCategory = categoryRepository.findById(productDTO.getCategoryId())
+                .orElseThrow(() -> new DataNotFoundException("Cannot find category with id: " + productDTO.getCategoryId()));
+        Product newProduct = Product.builder()
+                .name(productDTO.getName())
+                .price(productDTO.getPrice())
+                .thumbnail(productDTO.getThumbnail())
+                .description(productDTO.getDescription())
+                .category(existsingCategory)
+                .build();
+        return productRepository.save(newProduct);
+    }
+
+    @Override
+    public Product getProductById(long productId) throws DataNotFoundException{
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new DataNotFoundException("Cannot find product with id = " + productId));
+    }
+
+    @Override
+    public Page<ProductResponse> getAllProduct(PageRequest pageRequest){
+        // Lấy danh sách sản phẩm theo trang(page) và giới hạn(limit)
+        return productRepository.findAll(pageRequest).map(ProductResponse::fromProduct);
+    }
+
+    @Override
+    public Product updateProduct(long id, ProductDTO productDTO) throws Exception{
+        Product existsingProduct = getProductById(id);
+        if (existsingProduct != null) {
+            Category existsingCategory = categoryRepository.findById(productDTO.getCategoryId())
+                .orElseThrow(() -> new DataNotFoundException("Cannot find category with id: " + productDTO.getCategoryId()));
+            existsingProduct.setName(productDTO.getName());
+            existsingProduct.setCategory(existsingCategory);
+            existsingProduct.setPrice(productDTO.getPrice());
+            existsingProduct.setThumbnail(productDTO.getThumbnail());
+            existsingProduct.setDescription(productDTP.getDescription());
+            return productRepository.save(existsingProduct);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteProduct(long id){
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        optionalProduct.ifPresent(productRepository::delete);
+    }
+
+    @Override
+    public boolean existsByName(String name){
+        return productRepository.existsByName(name);
+    }
+
+    @Override
+    public ProductImage createProductImage(Long productId, ProductImageDTO productImageDTO) throws Exception{
+        Product existsingProduct = productRepository.findById(productId)
+            .orElseThrow(() -> new DataNotFoundException("Cannot find product with id: " + productImageDTO.getProductId()));
+
+        ProductImage newProductImage = ProductImage.builder().
+            .product(existsingProduct)
+            .imageUrl(productImageDTO.getImageUrl())
+            .build();
+        int size = productImageRepository.findByProductId(productId).size();
+        if (size >= 5) {
+            throw new InvalidParamException("Number of images must be <= 5");
+        }
+        return productImageRepository.save(newProductImage);
+    }
+}
+```
+
+---
+
 ## Controller
 
 - ProductsController.java
@@ -146,8 +325,13 @@ public class ProductsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> getProductWithId(@PathVariable Long id) {
-        return ResponseEntity.ok(String.format("get Product with id = %d successfully", id));
+    public ResponseEntity<?> getProductById(@PathVariable Long id) {
+        try {
+            Product existsingProduct = productService.getProductById(id);
+            return ResponseEntity.ok(ProductResponse.fromProduct(existsingProduct));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("")
@@ -231,12 +415,47 @@ public class ProductsController {
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
-        return ResponseEntity.ok(String.format("Update Product with id = %d is successfully", id));
+        try {
+            Product updatedProduct = productService.updateProduct(id, productDTO);
+            return ResponseEntity.ok(updatedProduct);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
-        return ResponseEntity.ok(String.format("Delete Product with id = %d is successfully", id));
+        try {
+            Product existsingProduct = productService.getProductById(id);
+            productService.deleteProduct(id);
+            return ResponseEntity.ok(existsingProduct);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("generateFakeProducts")
+    public ResponseEntity<String> generateFakeProducts() {
+        try {
+            Faker faker = new Faker();
+            for (int i = 0; i < 1000000; i++) {
+                String productName = faker.commerce().productName();
+                if(productService.existsByname(productByName)) {
+                    continue;
+                }
+                ProductDTO productDTO = ProductDTO.builder()
+                    .name(productName)
+                    .price((float)faker.number().numberBetween(10, 90000000))
+                    .thumbnail("")
+                    .description(faker.lorem().sentence())
+                    .categoryId((long)faker.number().numberBetween(1,3))
+                    .build();
+                productService.createProduct()
+            }
+            return ResponseEntity.ok("create success");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
 ```
@@ -257,8 +476,8 @@ public class ProductsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> getProductWithId(@PathVariable Long id) {
-        return ResponseEntity.ok(String.format("get Product with id = %d successfully", id));
+    public ResponseEntity<String> getProductById(@PathVariable Long id) {
+        return ResponseEntity.ok(String.format("get Product by id = %d successfully", id));
     }
 
     @PostMapping("", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -361,150 +580,3 @@ public class ProductsController {
 ```
 
 ---
-
-## Repository
-
-- ProductRepository.java
-
-```java
-public interface ProductRepository extends JpaRepository(Product, Long) {
-    boolean existsByName(String name);
-    Page<Product> findAll(Pageable pageable); // phân trang
-    // List<Product> findByCategoryId(Long categoryId);
-}
-```
-
-- ProductImageRepository.java
-
-```java
-public interface ProductImageRepository extends JpaRepository(ProductImage, Long) {
-    List<ProductImage> findByProductId(Long productId);
-}
-```
-
----
-
-## Service
-
-- Interface IProductService.java
-
-```java
-public interface IProductService{
-    Product createProduct(ProductDTO productDTO);
-
-    Product getProductById(long id);
-
-    Page<ProductResponse> getAllProduct(PageRequest pageRequest);
-
-    Product updateProduct(long id, ProductDTO productDTO);
-
-    void deleteProduct(long id);
-
-    boolean existsByName(String name);
-
-    ProductImage createProductImage(Long productId, ProductImageDTO productImageDTO) throws Exception;
-}
-```
-
-- ProductService.java
-
-```java
-@Service
-@RequiredArgsConstructor
-public class ProductService implements IProductService {
-    private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
-    private final ProductImageRepository productImageRepository;
-
-    @Override
-    public Product createProduct(ProductDTO productDTO) throws DataNotFoundException{
-        Category existsingCategory = categoryRepository.findById(productDTO.getCategoryId())
-                .orElseThrow(() -> new DataNotFoundException("Cannot find category with id: " + productDTO.getCategoryId()));
-        Product newProduct = Product.builder()
-                .name(productDTO.getName())
-                .price(productDTO.getPrice())
-                .thumbnail(productDTO.getThumbnail())
-                .category(existsingCategory)
-                .build();
-        return productRepository.save(newProduct);
-    }
-
-    @Override
-    public Product getProductById(long productId) throws DataNotFoundException{
-        return productRepository.findById(productId)
-                .orElseThrow(() -> new DataNotFoundException("Cannot find product with id = " + productId));
-    }
-
-    @Override
-    public Page<ProductResponse> getAllProduct(PageRequest pageRequest){
-        // Lấy danh sách sản phẩm theo trang(page) và giới hạn(limit)
-        return productRepository.findAll(pageRequest).map(product -> {
-            ProductResponse productResponse = ProductResponse.builder()
-            .name(product.getName())
-            .price(product.getPrice())
-            .thumbnail(product.getThumbnail())
-            .description(product.getDescription())
-            .categoryId(product.getCategory().getId())
-            .build()
-            productResponse.setCreatedAt(product.getCreatedAt());
-            productResponse.setUpdatedAt(product.getUpdateAt());
-            return productResponse;
-        });
-    }
-
-    @Override
-    public Product updateProduct(long id, ProductDTO productDTO) throws Exception{
-        Product existsingProduct = getProductById(id);
-        if (existsingProduct != null) {
-            Category existsingCategory = categoryRepository.findById(productDTO.getCategoryId())
-                .orElseThrow(() -> new DataNotFoundException("Cannot find category with id: " + productDTO.getCategoryId()));
-            existsingProduct.setName(productDTO.getName());
-            existsingProduct.setCategory(existsingCategory);
-            existsingProduct.setPrice(productDTO.getPrice());
-            existsingProduct.setThumbnail(productDTO.getThumbnail());
-            existsingProduct.setDescription(productDTP.getDescription());
-            return productRepository.save(existsingProduct);
-        }
-        return null;
-    }
-
-    @Override
-    public void deleteProduct(long id){
-        Optional<Product> optionalProduct = productRepository.findById(id);
-        optionalProduct.ifPresent(productRepository::delete);
-    }
-
-    @Override
-    public boolean existsByName(String name){
-        return productRepository.existsByName(name);
-    }
-
-    @Override
-    public ProductImage createProductImage(Long productId, ProductImageDTO productImageDTO) throws Exception{
-        Product existsingProduct = productRepository.findById(productId)
-            .orElseThrow(() -> new DataNotFoundException("Cannot find product with id: " + productImageDTO.getProductId()));
-
-        ProductImage newProductImage = ProductImage.builder().
-            .product(existsingProduct)
-            .imageUrl(productImageDTO.getImageUrl())
-            .build();
-        int size = productImageRepository.findByProductId(productId).size();
-        if (size >= 5) {
-            throw new InvalidParamException("Number of images must be <= 5");
-        }
-        return productImageRepository.save(newProductImage);
-    }
-}
-```
-
----
-
-pom.xml
-
-```xml
-<dependency>
-    <groupId>javax.activation</groupId>
-    <artifactId>javax.activation-api</artifactId>
-    <version>1.2.0</version>
-</dependency>
-```

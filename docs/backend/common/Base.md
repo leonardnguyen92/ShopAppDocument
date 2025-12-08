@@ -1,4 +1,4 @@
-# BaseEntity
+# Entity
 
 - Create BaseEntity Class in Model package
 - BaseEntity.java
@@ -26,6 +26,28 @@ public class BaseEntity {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+}
+```
+
+---
+
+# Response
+
+- Create Response Package
+- BaseResponse.java
+
+```java
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@MappedSuperClass
+public class BaseResponse {
+    @JsonProperty("created_at")
+    private LocalDateTime createdAt;
+
+    @JsonProperty("updated_at")
+    private LocalDateTime updatedAt;
 }
 ```
 
