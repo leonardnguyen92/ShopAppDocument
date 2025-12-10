@@ -143,8 +143,8 @@ public clas User extends BaseEntity {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-    @Column(name = "active")
-    private boolean active;
+    @Column(name = "is_active")
+    private boolean isActive;
 
     @Column(name = "facebook_account_id")
     private int facebookAccountId;

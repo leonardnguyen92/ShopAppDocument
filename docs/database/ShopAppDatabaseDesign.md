@@ -20,7 +20,7 @@ CREATE TABLE users(
     password VARCHAR(100) NOT NULL DEFAULT '',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    active TINYINT(1) DEFAULT 1,
+    is_active TINYINT(1) DEFAULT 1,
     date_of_birth DATE,
     facebook_account_id INT DEFAULT 0,
     google_account_id INT DEFAULT 0,

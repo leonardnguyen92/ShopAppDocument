@@ -62,7 +62,7 @@ public class OrderDTO {
     private String shippingAddress;
 
     @JsonProperty("shipping_date")
-    private Date shippingDate;
+    private LocalDate shippingDate;
 
     @JsonProperty("tracking_number")
     private String trackingNumber;
@@ -166,7 +166,7 @@ public class OrderListResponse {
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class order {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -187,7 +187,7 @@ public class order {
     private String note;
 
     @Column(name = "order_date")
-    private Date orderDate;
+    private LocalDate orderDate;
 
     @Column(name = "status")
     private String status;
@@ -199,7 +199,7 @@ public class order {
     private String shippingAddress;
 
     @Column(name = "shipping_date")
-    private Date shippingDate;
+    private LocalDate shippingDate;
 
     @Column(name = "tracking_number")
     private String trackingNumber;
@@ -208,7 +208,7 @@ public class order {
     private String paymentMethod;
 
     @Column(name = "payment_date")
-    private Date paymentDate;
+    private LocalDate paymentDate;
 
     @Column(name = "total_money")
     private BigDecimal totalMoney;
@@ -271,15 +271,17 @@ public class OrderService implements IOrderService {
         Order order = new Order();
         modelMapper.map(orderDTO, order);
         order.setUser(user);
-        order.setOrderDate(new Date());
+        order.setOrderDate(LocalDate.now());
         order.setStatus(OrderStatus.PENDING);
         // Check shipping date must be greater than today
-        Date shippingDate = orderDTO.getShippingDate();
-        if(shippingDate == null || shippingDate.before(new Date())) {
+        LocalDate shippingDate = orderDTO.getShippingDate() == null ? LocalDate.now(): orderDTO.getShippingDate();
+        if(shippingDate.before(LocalDate.now())) {
             throw new DataNotFoundException("Date must be at least today!");
         }
-        order.setActive(true);
+        order.setShippingDate(shippingDate);
+        order.setIsActive(true);
         orderRepository.save(order);
+        // modelMapper.typeMap(Order.class, OrderResponse.class);
         return modelMapper.map(order, OrderResponse.class);
     }
 
@@ -315,15 +317,19 @@ public class OrderService implements IOrderService {
 ```java
 @RestController
 @RequestMapping("${api.prefix}/orders")
+@RequiredArgsConstructor
 public class OrderController {
+    private final IOrderService orderService;
+
     @PostMapping("")
-    public ResponseEntity<?> createOrder(@Valid @RequestBody OrderDTO order, BindingResult result) {
+    public ResponseEntity<?> createOrder(@Valid @RequestBody OrderDTO orderDTO, BindingResult result) {
         try {
             if(result.hasErrors()) {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            return ResponseEntity.ok("create order successfully");
+            OrderResponse orderResponse = orderService.createOrder(ordetDTO);
+            return ResponseEntity.ok(orderResponse);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
