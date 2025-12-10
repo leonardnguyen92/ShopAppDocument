@@ -22,10 +22,46 @@
 
 ### [1.9 Extends: Hybrid Angular Architecture](/doc/frontend/extend/Hybrid%20Angular%20Architecture.md)
 
-## 2. [MySQL database design for ShopApp application](chapter2)
+---
 
-## 3. [Building Java Spring BackEnd Applications](chapter3)
+## 2. MySQL database design for ShopApp application
 
-## 4. [Spring Security manages login using JwtToken](chapter4)
+### [2.1 Docker MySQL Setup](/docs/database/DockerMySQLSetup.md)
 
-## 5. [Update features and integrate APIs between Frontend (Angular) and Backend (Spring Boot)](chapter5)
+### [2.2 ShopApp Database Design](/docs/database/ShopAppDatabaseDesign.md)
+
+---
+
+## 3. Building Java Spring BackEnd Applications
+
+### [3.1 Setup Spring Tool Suites on WSL2](/docs/backend/common/SetupSTSOnWSL2.md)
+
+### [3.2 Initialize Java Spring Project](/docs/backend/common/InitializeJavaSpringProject.md)
+
+### [3.3 Config Spring Application](/docs/backend/common/ConfigSrpingApplication.md)
+
+### [3.4 Data Transfer Object](/docs/backend/common/DTO.md)
+
+### [3.5 Categories Model](/docs/backend/Category.md)
+
+### [3.6 Users Model](/docs/backend/User.md)
+
+### [3.7 Products Model](/docs/backend/Product.md)
+
+### [3.8 Orders Model](/docs/backend/Order.md)
+
+### [3.9 Order Details Model](/docs/backend/OrderDetail.md)
+
+---
+
+## 4. Spring Security manages login using JwtToken
+
+---
+
+## 5. Update features and integrate APIs between Frontend (Angular) and Backend (Spring Boot)
+
+---
+
+## 6. Devops
+
+---
