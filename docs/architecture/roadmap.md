@@ -14,7 +14,7 @@
 
 ## Roadmap for SpringBoot
 
-<img src="/images/roadmap/spring-boot.jpg" width="50%" height="50%>
+<img src="/images/roadmap/spring-boot.jpg" width="50%" height="50%">
 
 <!-- ![roadmap-spring-boot](/images/roadmap/spring-boot.jpg) -->
 
