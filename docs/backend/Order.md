@@ -120,7 +120,7 @@ public class OrderResponse extends BaseResponse {
     private String shippingAddress;
 
     @JsonProperty("shipping_date")
-    private Date shippingDate;
+    private LocalDate shippingDate;
 
     @JsonProperty("tracking_number")
     private String trackingNumber;
@@ -129,13 +129,13 @@ public class OrderResponse extends BaseResponse {
     private String paymentMethod;
 
     @JsonProperty("payment_date")
-    private Date paymentDate;
+    private LocalDate paymentDate;
 
     @JsonProperty("total_money")
     private BigDecimal totalMoney;
 
-    @JsonProperty("active")
-    private boolean active;
+    @JsonProperty("is_active")
+    private boolean isActive;
 
 }
 ```
@@ -213,8 +213,8 @@ public class Order {
     @Column(name = "total_money")
     private BigDecimal totalMoney;
 
-    @Column(name = "active")
-    private boolean active;
+    @Column(name = "is_active")
+    private boolean isActive;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -244,9 +244,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 public interface IOrderService {
     OrderResponse createOrder(orderDTO orderDTO) throws Exception;
     OrderResponse getOrder(Long id);
-    OrderResponse updateOrder(Long id, OrderDTO orderDTO);
+    OrderResponse updateOrder(Long id, OrderDTO orderDTO) throws Exception;
     void deleteOrder(Long id);
-    List<OrderResponse> getAllOrders(Long userId);
+    List<OrderResponse> findByUserId(Long userId);
 }
 ```
 
@@ -287,22 +287,37 @@ public class OrderService implements IOrderService {
 
     @Override
     public OrderResponse getOrder(Long id) {
-        return null;
+        return orderRepository.findById(id).orElse(null);
     }
 
     @Override
-    public OrderResponse updateOrder(Long id, OrderDTO orderDTO) {
-        return null;
+    public OrderResponse updateOrder(Long id, OrderDTO orderDTO) throws Exception {
+        Order order = orderRepository.findById(id).orElseThrow(() ->
+            new DataNotFoundException("Cannot find order with id: " + id));
+        User existsingUser = userRepository.findById(orderDTO.getUserId()).orElseThrow(() ->
+            new DataNotFoundException("Cannot find user with id: " + existsingOrder.getUserId()));
+        // Tạo luồng bằng ánh xạ riêng để kiểm soát việc ánh xạ
+        modelMapper.typeMap(OrderDTO.class, Order.class)
+            .addMappings(mapper -> mapper.skip(Order::setId));
+        // Cập nhật các trường của đơn hàng từ orderDTO
+        modelMapper.map(orderDTO, order);
+        order.setUser(existsingUser);
+        return orderRepository.save(order);
     }
 
     @Override
     public void deleteOrder(Long id) {
+        Order order = orderRepository.findById(id).orElse(null);
+        if(order != null) {
+            order.setIsActive = false;
+            orderRepository.save(order);
+        }
         return null;
     }
 
     @Override
-    public List<OrderResponse> getAllOrders(Long userId) {
-        return null;
+    public List<OrderResponse> findByUserId(Long userId) {
+        return orderRepository.findByUserId(userId);
     }
 
 }
@@ -335,19 +350,37 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/{user_id}")
+    @GetMapping("/{id}")
+    // GET http://localhost:8088/api/v1/orders/4
+    // Lấy ra một đơn hàng có giá trị id = 4
+    public ResponseEntity<?> getOrder(@Valid @PathVariable("id") Long orderId) {
+        try {
+            Order existsingOrder = orderService.getOrder(orderId);
+            return ResponseEntity.ok(existsingOrder);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/user/{user_id}")
+    // GET http://localhost:8088/api/v1/orders/user/4
+    // Lấy ra các đơn hàng của một user
     public ResponseEntity<?> getOrders(@Valid @PathVariable("user_id") Long userId) {
         try {
-            return ResponseEntity.ok(String.format("get orders by user_id = %d", userId));
+            List<Order> orders = orderService.findByUserId(userId);
+            return ResponseEntity.ok(orders);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PutMapping("/{id}")
+    // PUT http://localhost:8088/api/v1/orders/2
+    // công việc của admin
     public ResponseEntity<?> updateOrder(@Valid @PathVariable long id, @Valid @RequestBody OrderDTO order) {
         try {
-            return ResponseEntity.ok(String.format("Update order with ID = %d successfully.", id));
+            Order order = orderService.updateOrder(id, orderDTO);
+            return ResponseEntity.ok(order);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -356,6 +389,7 @@ public class OrderController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOrder(@Valid @PathVariable long id) {
         try {
+            orderService.deleteOrder(id);
             return ResponseEntity.ok(String.format("Delete order with ID = %d successfully.", id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

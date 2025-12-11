@@ -155,7 +155,7 @@ CREATE TABLE order_detail(
     order_id INT,
     product_id INT,
     price FLOAT CHECK(price >= 0),
-    number_of_product INT CHECK(number_of_product > 0),
+    number_of_products INT CHECK(number_of_product > 0),
     total_money FLOAT CHECK (total_money >= 0),
     color VARCHAR(20) DEFAULT '',
     FOREIGN KEY (order_id) REFERENCES orders(id),
