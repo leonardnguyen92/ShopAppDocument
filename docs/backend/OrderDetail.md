@@ -56,7 +56,7 @@ public class OrderDetail {
 
 ## DTO
 
--OrderDetaiDTO.java
+-OrderDetailDTO.java
 
 ```java
 @Data
@@ -72,7 +72,7 @@ public class OrderDetailDTO {
     @Min(value = 1, message = "Product's ID must be > 0")
     private Long productId;
 
-    @Min(value = 0, message = "Price must be >= 0")
+    @DecimalMin(value = "0.0", inclusive = true, message = "Price must be >= 0")
     private BigDecimal price;
 
     @JsonProperty("number_of_products")
@@ -80,7 +80,7 @@ public class OrderDetailDTO {
     private int numberOfProducts;
 
     @JsonProperty("total_money")
-    @Min(value = 0, message = "total_money must be >= 0")
+    @DecimalMin(value = "0.0", inclusive = true, message = "total_money must be >= 0")
     private BigDecimal totalMoney;
 
     private String color;
@@ -114,10 +114,10 @@ public class OrderDetailResponse {
     private String color;
 
     @JsonProperty("order_id")
-    private Order orderId;
+    private Long orderId;
 
     @JsonProperty("product_id")
-    private Product productId;
+    private Long productId;
 
     public static OrderDetailResponse fromOrderDetail(OrderDetail orderDetail) {
         return OrderDetailResponse
@@ -126,7 +126,7 @@ public class OrderDetailResponse {
             .orderId(orderDetail.getOrder().getId())
             .productId(orderDetail.getProduct().getId())
             .price(orderDetail.getPrice())
-            .numberOfProduct(orderDetail.getNumberOfProducts())
+            .numberOfProducts(orderDetail.getNumberOfProducts())
             .totalMoney(orderDetail.getTotalMoney())
             .color(orderDetail.getColor())
             .build();
@@ -141,7 +141,7 @@ public class OrderDetailResponse {
 - OrderDetailRepository.java
 
 ```java
-public interface OrderDetailRepository extends JpaRepository<OderDetail, Long> {
+public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
     List<OrderDetail> findByOrderId(Long orderId);
 }
 ```
@@ -158,7 +158,7 @@ public interface IOrderDetailService {
 
     OrderDetail getOrderDetail(Long id) throws Exception;
 
-    OrderDetail updateOrderDetail(Long id, OrderDetaiDTO orderDetailDTO) throws Exception;
+    OrderDetail updateOrderDetail(Long id, OrderDetailDTO orderDetailDTO) throws Exception;
 
     void deleteById(Long id);
 
@@ -190,7 +190,7 @@ public class OrderDetailService implements IOrderDetailService {
             .product(product)
             .numberOfProducts(orderDetailDTO.getNumberOfProducts())
             .price(orderDetailDTO.getPrice())
-            .totalMoNey(orderDetailDTO.getTotalMoney())
+            .totalMoney(orderDetailDTO.getTotalMoney())
             .color(orderDetailDTO.getColor())
             .build();
 
@@ -205,19 +205,19 @@ public class OrderDetailService implements IOrderDetailService {
     }
 
     @Override
-    public OrderDetail updateOrderDetail(Long id, OrderDetaiDTO orderDetailDTO) throws Exception{
+    public OrderDetail updateOrderDetail(Long id, OrderDetailDTO orderDetailDTO) throws Exception{
         // check existsing order detail
         OrderDetail existsingOrderDetail = orderDetailRepository.findById(id)
-            .orElseThrow(new DataNotFoundException("Cannot find Order Detail with ID: " + id));
+            .orElseThrow(() -> new DataNotFoundException("Cannot find Order Detail with ID: " + id));
         Order existsingOrder = orderRepository.findById(orderDetailDTO.getOrderId())
-            .orElseThrow(new DataNotFoundException("Cannot find Order with ID: " + orderDetailDTO.getOrderId()));
+            .orElseThrow(() -> new DataNotFoundException("Cannot find Order with ID: " + orderDetailDTO.getOrderId()));
         Product existsingProduct = productRepository.findById(orderDetailDTO.getProductId())
             .orElseThrow(() -> new DataNotFoundException("Cannot find Product with ID: " + orderDetailDTO.getProductId()));
 
         existsingOrderDetail.setPrice(orderDetailDTO.getPrice());
         existsingOrderDetail.setNumberOfProducts(orderDetailDTO.getNumberOfProducts());
         existsingOrderDetail.setColor(orderDetailDTO.getColor());
-        existsingOrderDetail.setTotalMoney(orderDetailFTO.getTotalMoney());
+        existsingOrderDetail.setTotalMoney(orderDetailDTO.getTotalMoney());
         existsingOrderDetail.setOrder(existsingOrder);
         existsingOrderDetail.setProduct(existsingProduct);
 
@@ -258,7 +258,7 @@ public class OrderDetailController {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            OrderDetail orderDetail = orderDetailService.createOrderDetail(orderDetailDTO)
+            OrderDetail orderDetail = orderDetailService.createOrderDetail(orderDetailDTO);
             return ResponseEntity.ok().body(OrderDetailResponse.fromOrderDetail(orderDetail));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -292,11 +292,11 @@ public class OrderDetailController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateOrderDetail(@Valid @PathVariable("id") Long id, @RequestBody OrderDetailDTO orderDetailDTO) {
+    public ResponseEntity<?> updateOrderDetail(@Valid @PathVariable("id") Long id, @Valid @RequestBody OrderDetailDTO orderDetailDTO) {
         try {
             OrderDetail orderDetail = orderDetailService.updateOrderDetail(id, orderDetailDTO);
             return ResponseEntity.ok().body(OrderDetailResponse.fromOrderDetail(orderDetail));
-        } catch (Exception) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
@@ -304,10 +304,140 @@ public class OrderDetailController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteOrderDetail(@Valid @PathVariable("id") Long id) {
         orderDetailService.deleteById(id);
-        return ResponseEntity.ok().body("Delete Order Detail With ID: " + id + "success!");
+        return ResponseEntity.ok().body("Delete Order Detail With ID: " + id + " success!");
     }
 
 }
 ```
 
 ---
+
+## Extends
+
+---
+
+### Definition
+
+<pre>- A Summary DTO is a lightweight, simplified version of a full object.
+- It contains only essential fields and is used inside other response objects to avoid returning overly large or unnecessary data</pre>
+
+---
+
+### How it is used
+
+<pre>- Used as nested objects inside larger response structures (e.g., Order → ProductSummary).
+- Used when you want to avoid returning full entity data.
+- Reduces API payload and improves performance.
+- Helps hide internal or sensitive fields.</pre>
+
+---
+
+### Purpose
+
+<pre>- Reduce response size → lighter APIs.
+- Improve security → avoid exposing internal fields.
+- Simplify API output → easier for frontend.
+- Performance optimization for large lists.
+- Reusable components for multiple responses.</pre>
+
+---
+
+### Example
+
+- Full Entity
+
+```java
+@Entity
+public class Product {
+    private Long id;
+    private String name;
+    private String description;
+    private BigDecimal price;
+    private String sku;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+}
+```
+
+- Summary DTO (lightweight)
+
+```java
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductSummary {
+    private String name;
+    private BigDecimal price;
+}
+```
+
+- Response using Summary
+
+```java
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class OrderResponse {
+    private Long orderNumber;
+    private String customerName;
+    private ProductSummary product; // summary here
+}
+```
+
+- Mapping entity → response (service example)
+
+```java
+OrderResponse response = new OrderResponse(
+    order.getOrderNumber(),
+    order.getCustomer().getName(),
+    new ProductSummary(
+        order.getProduct().getName(),
+        order.getProduct().getPrice()
+    )
+);
+```
+
+- Response JSON (clean & compact)
+
+```json
+{
+  "orderNumber": 1001,
+  "customerName": "Leonard",
+  "product": {
+    "name": "Laptop ThinkPad",
+    "price": 25000000
+  }
+}
+```
+
+**No:**
+
+```
++ productId
+
++ createdAt
+
++ updatedAt
+
++ description
+
++ sku
+```
+
+**→ Very lightweight, clean, and easy to use.**
+
+---
+
+### When NOT to use Summary?
+
+- When full data is required.
+
+- When the client needs an ID to perform operations.
+
+- When the object is already minimal.
+
+---
+
+### Conclusion
+
+## **_Summary is a lightweight DTO that keeps your APIs clean, fast, and secure._**
